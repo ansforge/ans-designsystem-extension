@@ -32,8 +32,8 @@ Ajoutez les fichiers CSS générés dans la section `styles` de votre fichier `a
 Si vous préférez utiliser `@import` dans votre fichier `src/styles.scss` :
 
 ```scss
-@import '~ans-design-overrides/pivot';      // Mapping automatique ANS -> DSFR
-@import '~ans-design-overrides/components'; // Surcharges spécifiques (Radius, Shadow, etc.)
+@import 'ans-design-overrides/pivot';      // Mapping automatique ANS -> DSFR
+@import 'ans-design-overrides/components'; // Surcharges spécifiques (Radius, Shadow, etc.)
 ```
 
 ## 🏗 Système de Build
