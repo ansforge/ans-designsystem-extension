@@ -1,0 +1,178 @@
+/* src/ans-dsfr-components.css */
+
+/* ========== BOUTONS ========== */
+.fr-btn {
+  border-radius: var(--radius-button-md-top-left) var(--radius-button-md-top-right) var(--radius-button-md-bottom-right) var(--radius-button-md-bottom-left) !important;
+}
+
+.fr-btn--sm {
+  border-radius: var(--radius-button-sm-top-left) var(--radius-button-sm-top-right) var(--radius-button-sm-bottom-right) var(--radius-button-sm-bottom-left) !important;
+}
+
+.fr-btn--lg {
+  border-radius: var(--radius-button-lg-top-left) var(--radius-button-lg-top-right) var(--radius-button-lg-bottom-right) var(--radius-button-lg-bottom-left) !important;
+}
+
+/* Forcer la taille des icônes pour qu'elle soit identique avec ou sans texte */
+.fr-btn--sm::before {
+  --icon-size: 1rem !important; /* 16px */
+}
+
+.fr-btn::before,
+.fr-btn--lg::before {
+  --icon-size: 1.5rem !important; /* 24px */
+}
+
+/* ========== BADGES ========== */
+.fr-badge {
+  border-radius: var(--radius-badge-md-top-left) var(--radius-badge-md-top-right) var(--radius-badge-md-bottom-right) var(--radius-badge-md-bottom-left) !important;
+}
+
+.fr-badge--sm {
+  border-radius: var(--radius-badge-sm-top-left) var(--radius-badge-sm-top-right) var(--radius-badge-sm-bottom-right) var(--radius-badge-sm-bottom-left) !important;
+}
+
+/* ========== ALERTES ========== */
+.fr-alert {
+  border-radius: var(--radius-alert-md-top-left) var(--radius-alert-md-top-right) var(--radius-alert-md-bottom-right) var(--radius-alert-md-bottom-left) !important;
+  overflow: hidden !important; /* Pour que la barre de couleur à gauche suive l'arrondi */
+  box-shadow: inset 0 0 0 1px var(--border-default-grey) !important;
+}
+
+.fr-alert--sm {
+  border-radius: var(--radius-alert-sm-top-left) var(--radius-alert-sm-top-right) var(--radius-alert-sm-bottom-right) var(--radius-alert-sm-bottom-left) !important;
+}
+
+/* On force la barre de couleur à suivre l'arrondi et on colore la bordure entière */
+.fr-alert--info { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-informaiton), inset 0 0 0 1px var(--border-plain-informaiton) !important; }
+.fr-alert--error { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-error), inset 0 0 0 1px var(--border-plain-error) !important; }
+.fr-alert--success { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-success), inset 0 0 0 1px var(--border-plain-success) !important; }
+.fr-alert--warning { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-warning), inset 0 0 0 1px var(--border-plain-warning) !important; }
+
+/* ========== INPUTS & SELECTS ========== */
+.fr-input, .fr-select {
+  border-radius: var(--radius-input-top-left) var(--radius-input-top-right) var(--radius-input-bottom-right) var(--radius-input-bottom-left) !important;
+  /* Correction : Forcer une bordure complète sur 4 côtés et supprimer l'ombre interne DSFR */
+  box-shadow: inset 0 0 0 1px var(--border-input-root) !important;
+  border: none !important; /* On utilise box-shadow inset pour une bordure propre avec radius */
+  background-color: var(--background-input) !important;
+}
+
+/* État Focus pour les inputs */
+.fr-input:focus, .fr-select:focus {
+  outline-color: var(--system-focus) !important;
+  box-shadow: inset 0 0 0 2px var(--system-focus) !important;
+}
+
+/* État Erreur */
+.fr-input-group--error .fr-input, 
+.fr-select-group--error .fr-select,
+.fr-input--error,
+.fr-select--error {
+  box-shadow: inset 0 0 0 2px var(--border-plain-error) !important;
+}
+
+/* État Succès / Valide */
+.fr-input-group--valid .fr-input, 
+.fr-select-group--valid .fr-select,
+.fr-input--valid,
+.fr-select--valid {
+  box-shadow: inset 0 0 0 2px var(--border-plain-success) !important;
+}
+
+/* ========== TUILES (TILES) ========== */
+.fr-tile {
+  border-radius: var(--radius-tile-desktop-top-left) var(--radius-tile-desktop-top-right) var(--radius-tile-desktop-bottom-right) var(--radius-tile-desktop-bottom-left) !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 0 0 1px var(--border-default-grey) !important;
+  border: none !important;
+}
+
+/* Supprimer la barre de survol bleue (underline) du DSFR */
+.fr-tile::before,
+.fr-tile::after {
+  display: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.fr-tile:hover {
+  background-color: var(--background-alt-grey) !important;
+}
+
+/* Supprimer l'underline (background-image) du titre au survol */
+.fr-tile__title a:before, 
+.fr-tile__title button:before, 
+.fr-tile__title:before {
+    background-position: 0 100% !important;
+    background-repeat: no-repeat !important;
+    background-size: 0% .25rem !important;
+}
+
+/* Mettre à jour au format mobile via media query si nécessaire */
+@media (max-width: 48em) {
+  .fr-tile {
+    border-radius: var(--radius-tile-mobile-top-left) var(--radius-tile-mobile-top-right) var(--radius-tile-mobile-bottom-right) var(--radius-tile-mobile-bottom-left) !important;
+  }
+}
+
+/* ========== MODALES ========== */
+.fr-modal {
+  /* Assurer la visibilité quand utilisé avec showModal() natif */
+  background-color: transparent !important;
+  overflow: visible !important; /* Pour laisser respirer la shadow du body */
+  display: none;
+}
+
+dialog[open].fr-modal {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Forcer la visibilité sur toute la chaîne parente pour éviter de couper la shadow */
+.fr-modal .fr-container,
+.fr-modal .fr-grid-row,
+.fr-modal .fr-col-12,
+.fr-modal .fr-col-md-8,
+.fr-modal .fr-col-lg-6 {
+  overflow: visible !important;
+}
+
+.fr-modal__body {
+  border-radius: var(--radius-modal-desktop-top-left) var(--radius-modal-desktop-top-right) var(--radius-modal-desktop-bottom-right) var(--radius-modal-desktop-bottom-left) !important;
+  /* shadow "lifted" centré */
+  box-shadow: var(--shadow-lifted-x) var(--shadow-lifted-y) var(--shadow-lifted-blur) var(--shadow-lifted-spread) var(--shadow-lifted-color) !important;
+  z-index: 1001;
+  /* On RESTAURE l'overflow par défaut du DSFR pour ne pas casser le scroll interne */
+  overflow-y: auto !important;
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  max-height: calc(100vh - 4rem) !important;
+}
+
+@media (max-width: 48em) {
+  .fr-modal__body {
+    border-radius: var(--radius-modal-mobile-top-left) var(--radius-modal-mobile-top-right) var(--radius-modal-mobile-bottom-right) var(--radius-modal-mobile-bottom-left) !important;
+  }
+}
+
+/* ========== LIENS (LINKS) ========== */
+.fr-link {
+  transition: opacity 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.fr-link:hover {
+  font-weight: var(--font-weight-bold) !important;
+  opacity: 1; /* On garde une opacité pleine pour bien voir le gras */
+}
+
+/* Forcer le gras sur les icônes DSFR au survol des liens */
+.fr-link:hover::before,
+.fr-link:hover::after,
+[class^="fr-icon-"]:hover,
+[class*=" fr-icon-"]:hover {
+  font-weight: var(--font-weight-bold) !important;
+}
