@@ -11,6 +11,10 @@
 
 .fr-btn--lg {
   border-radius: var(--radius-button-lg-top-left) var(--radius-button-lg-top-right) var(--radius-button-lg-bottom-right) var(--radius-button-lg-bottom-left) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
 }
 
 /* Forcer la taille des icônes pour qu'elle soit identique avec ou sans texte (gauche ::before et droite ::after) */
@@ -29,6 +33,13 @@
 .fr-btn--lg::before,
 .fr-btn--lg::after {
   --icon-size: 1.5rem !important; /* 24px */
+}
+
+/* Reset des marges UNIQUEMENT pour le mode icône seule (quand les classes de position ne sont pas présentes) */
+.fr-btn--lg:not([class*="fr-btn--icon-"])::before,
+.fr-btn--lg:not([class*="fr-btn--icon-"])::after {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
 }
 
 /* ========== BADGES ========== */
