@@ -1,6 +1,6 @@
 {
   "name": "ans-design-overrides",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/css/ans-dsfr-pivot.css",
   "exports": {
     "./primitives": "./build/css/ans-primitives.css",
