@@ -13,13 +13,21 @@
   border-radius: var(--radius-button-lg-top-left) var(--radius-button-lg-top-right) var(--radius-button-lg-bottom-right) var(--radius-button-lg-bottom-left) !important;
 }
 
-/* Forcer la taille des icônes pour qu'elle soit identique avec ou sans texte */
-.fr-btn--sm::before {
+/* Forcer la taille des icônes pour qu'elle soit identique avec ou sans texte (gauche ::before et droite ::after) */
+/* Défaut en premier (MD) */
+.fr-btn::before,
+.fr-btn::after {
+  --icon-size: 1.5rem !important; /* 24px */
+}
+
+/* Variantes ensuite (SM et LG) */
+.fr-btn--sm::before,
+.fr-btn--sm::after {
   --icon-size: 1rem !important; /* 16px */
 }
 
-.fr-btn::before,
-.fr-btn--lg::before {
+.fr-btn--lg::before,
+.fr-btn--lg::after {
   --icon-size: 1.5rem !important; /* 24px */
 }
 
@@ -164,15 +172,9 @@ dialog[open].fr-modal {
   align-items: center;
 }
 
+/* Forcer le gras uniquement sur le TEXTE du lien au survol, pas sur les icônes */
 .fr-link:hover {
   font-weight: var(--font-weight-bold) !important;
-  opacity: 1; /* On garde une opacité pleine pour bien voir le gras */
+  opacity: 1;
 }
 
-/* Forcer le gras sur les icônes DSFR au survol des liens */
-.fr-link:hover::before,
-.fr-link:hover::after,
-[class^="fr-icon-"]:hover,
-[class*=" fr-icon-"]:hover {
-  font-weight: var(--font-weight-bold) !important;
-}
