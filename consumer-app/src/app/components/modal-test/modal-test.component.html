@@ -1,0 +1,148 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Modales</h2>
+</div>
+
+<!-- <div class="fr-grid-row fr-grid-row--gutters">
+  <div class="fr-col-12 fr-col-md-4">
+    <button class="fr-btn" aria-controls="fr-modal-sm" (click)="openModal('fr-modal-sm')">Ouvrir Modale SM</button>
+  </div>
+  <div class="fr-col-12 fr-col-md-4">
+    <button class="fr-btn" aria-controls="fr-modal-md" (click)="openModal('fr-modal-md')">Ouvrir Modale MD</button>
+  </div>
+  <div class="fr-col-12 fr-col-md-4">
+    <button class="fr-btn" aria-controls="fr-modal-lg" (click)="openModal('fr-modal-lg')">Ouvrir Modale LG</button>
+  </div>
+</div> -->
+
+<!-- Modale SM -->
+<!-- <dialog aria-labelledby="fr-modal-sm-title" id="fr-modal-sm" class="fr-modal">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="fr-modal-sm" (click)="closeModal('fr-modal-sm')">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="fr-modal-sm-title" class="fr-modal__title"><span class="fr-icon-arrow-right-line fr-icon--lg"></span> Petite Modale</h1>
+            <p>Test du radius sur une modale de petite taille.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog> -->
+
+<!-- Modale MD -->
+<!-- <dialog aria-labelledby="fr-modal-md-title" id="fr-modal-md" class="fr-modal">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="fr-modal-md" (click)="closeModal('fr-modal-md')">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="fr-modal-md-title" class="fr-modal__title">Modale Standard</h1>
+            <p>Contenu principal pour vérifier l'alignement et les bordures.</p>
+          </div>
+          <div class="fr-modal__footer">
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+              <li><button class="fr-btn">Valider</button></li>
+              <li><button class="fr-btn fr-btn--secondary">Annuler</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog> -->
+
+<!-- Modale LG -->
+<!-- <dialog aria-labelledby="fr-modal-lg-title" id="fr-modal-lg" class="fr-modal">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="fr-modal-lg" (click)="closeModal('fr-modal-lg')">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="fr-modal-lg-title" class="fr-modal__title">Grande Modale</h1>
+            <div class="fr-input-group">
+              <label class="fr-label" for="modal-input">Saisie interne</label>
+              <input class="fr-input" type="text" id="modal-input">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog> -->
+
+<button aria-controls="modal-1" data-fr-opened="false" type="button" class="fr-btn">Ouvrir la modale SM</button>
+<dialog id="modal-1" class="fr-modal" aria-labelledby="modal-1-title" data-fr-concealing-backdrop="true">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button aria-controls="modal-1" title="Fermer" type="button" id="button-6" class="fr-btn--close fr-btn">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h2 id="modal-1-title" class="fr-modal__title">
+              <span class="fr-icon-info-line fr-icon--lg" aria-hidden="true"></span> Titre de la modale
+            </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<button aria-controls="modal-2" data-fr-opened="false" type="button" class="fr-btn">Ouvrir la modale MD</button>
+<dialog id="modal-2" class="fr-modal" aria-labelledby="modal-2-title" data-fr-concealing-backdrop="true">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button aria-controls="modal-2" title="Fermer" type="button" id="button-7" class="fr-btn--close fr-btn">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h2 id="modal-2-title" class="fr-modal__title">
+              <span class="fr-icon-info-line fr-icon--lg" aria-hidden="true"></span> Titre de la modale
+            </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<button aria-controls="modal-3" data-fr-opened="false" type="button" class="fr-btn">Ouvrir la modale LG</button>
+<dialog id="modal-3" class="fr-modal" aria-labelledby="modal-3-title" data-fr-concealing-backdrop="true">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button aria-controls="modal-3" title="Fermer" type="button" id="button-8" class="fr-btn--close fr-btn">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h2 id="modal-3-title" class="fr-modal__title">
+              <span class="fr-icon-info-line fr-icon--lg" aria-hidden="true"></span> Titre de la modale
+            </h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliquam purus sit amet luctus. Lorem ipsum dolor sit amet consectetur adipiscing elit ut.</p>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

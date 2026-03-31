@@ -1,0 +1,11 @@
+/* src/styles.scss */
+
+// 1. Official DSFR
+@import '@gouvfr/dsfr/dist/dsfr/dsfr.min.css';
+
+// 2. ANS Pivot (Overrides DSFR variables with ANS values)
+@import 'ans-design-overrides/pivot';
+
+@import 'ans-design-overrides/components';
+
+

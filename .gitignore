@@ -14,3 +14,12 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Consumer App specific
+/consumer-app/node_modules/
+/consumer-app/dist/
+/consumer-app/.angular/
+/consumer-app/tmp/
+/consumer-app/out-tsc/
+/consumer-app/.vscode/
+

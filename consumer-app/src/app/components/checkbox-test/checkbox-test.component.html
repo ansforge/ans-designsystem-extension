@@ -1,0 +1,111 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Cases à cocher</h2>
+  <p>Vérification des différents états des checkboxes DSFR.</p>
+</div>
+
+<div class="fr-grid-row fr-grid-row--gutters">
+  
+  <!-- Cas Standard -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend fr-text--regular">
+        Checkboxes isolées
+        <span class="fr-hint-text">Ceci est une description globale pour ce groupe d'options.</span>
+      </legend>
+      <div class="fr-checkbox-group">
+        <input type="checkbox" id="check-1" [(ngModel)]="check1">
+        <label class="fr-label" for="check-1">Option 1 (Défaut)</label>
+      </div>
+      <div class="fr-checkbox-group fr-ml-2w">
+        <input type="checkbox" id="check-2" [(ngModel)]="check2">
+        <label class="fr-label" for="check-2">Option 2 (Cochée)</label>
+      </div>
+    </fieldset>
+  </div>
+
+	<fieldset class="fr-fieldset" id="storybook-form" aria-labelledby="storybook-form-legend storybook-form-messages">
+  <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="storybook-form-legend"> Légende pour l’ensemble des éléments </legend>
+  <div class="fr-fieldset__element fr-fieldset__element--inline">
+    <div class="fr-checkbox-group">
+      <input name="checkbox1" id="checkbox-10" type="checkbox" aria-describedby="checkbox-10-messages">
+      <label class="fr-label" for="checkbox-10"> Checkbox 1 </label>
+      <div class="fr-messages-group" id="checkbox-10-messages" aria-live="polite">
+      </div>
+    </div>
+  </div>
+  <div class="fr-fieldset__element fr-fieldset__element--inline">
+    <div class="fr-checkbox-group">
+      <input name="checkbox2" id="checkbox-11" type="checkbox" aria-describedby="checkbox-11-messages">
+      <label class="fr-label" for="checkbox-11"> Checkbox 2 </label>
+      <div class="fr-messages-group" id="checkbox-11-messages" aria-live="polite">
+      </div>
+    </div>
+  </div>
+  <div class="fr-messages-group" id="storybook-form-messages" aria-live="polite">
+  </div>
+</fieldset>
+
+  <!-- Cas avec description -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend fr-text--regular">Avec description</legend>
+      <div class="fr-checkbox-group">
+        <input type="checkbox" id="check-hint">
+        <label class="fr-label" for="check-hint">
+          Option avec aide
+          <span class="fr-hint-text">Ceci est un texte d'aide pour la case à cocher.</span>
+        </label>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Groupe d'erreur -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset fr-fieldset--error">
+      <legend class="fr-fieldset__legend fr-text--regular">Groupe en erreur</legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-checkbox-group">
+          <input type="checkbox" id="check-err-1">
+          <label class="fr-label" for="check-err-1">Option erreur 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-checkbox-group">
+          <input type="checkbox" id="check-err-2">
+          <label class="fr-label" for="check-err-2">Option erreur 2</label>
+        </div>
+      <p class="fr-error-text">Vous devez cocher au moins une option.</p>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Groupe de succès -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset fr-fieldset--valid">
+      <legend class="fr-fieldset__legend fr-text--regular">Groupe en succès</legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-checkbox-group">
+          <input type="checkbox" id="check-ok-1" checked>
+          <label class="fr-label" for="check-ok-1">Option succès 1</label>
+        </div>
+      <p class="fr-valid-text">Sélection valide !</p>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Désactivé -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend fr-text--regular">Désactivées</legend>
+      <div class="fr-checkbox-group">
+        <input type="checkbox" id="check-dis-1" disabled>
+        <label class="fr-label" for="check-dis-1">Option désactivée</label>
+      </div>
+      <div class="fr-checkbox-group">
+        <input type="checkbox" id="check-dis-2" disabled checked>
+        <label class="fr-label" for="check-dis-2">Option désactivée (cochée)</label>
+      </div>
+    </fieldset>
+  </div>
+
+</div>

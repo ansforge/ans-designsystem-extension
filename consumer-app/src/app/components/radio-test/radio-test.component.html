@@ -1,0 +1,146 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Boutons Radio</h2>
+  <p>Vérification des différents états des boutons radio DSFR. Les radius pour les boutons radio "riches" utilisent les tokens ANS.</p>
+</div>
+
+<div class="fr-grid-row fr-grid-row--gutters">
+  
+  <!-- Cas Standard (Vertical) -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset" id="radio-standard">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-standard-legend">
+        Boutons radio standards
+        <span class="fr-hint-text">Ceci est une description globale pour ce groupe d'options.</span>
+      </legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input readonly type="radio" id="radio-1" name="radio-standard" value="option1" [(ngModel)]="radioValue">
+          <label class="fr-label" for="radio-1">Option 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input readonly type="radio" id="radio-2" name="radio-standard" value="option2" [(ngModel)]="radioValue">
+          <label class="fr-label" for="radio-2">Option 2</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Cas Inline (Horizontal) -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset fr-fieldset--inline" id="radio-inline">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-inline-legend">
+        Boutons radio en ligne
+        <span class="fr-hint-text">Les éléments suivants sont positionnés sur une seule ligne.</span>
+      </legend>
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-inline-1" name="radio-inline" value="option1" [(ngModel)]="radioValue">
+          <label class="fr-label" for="radio-inline-1">Option 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-inline-2" name="radio-inline" value="option2" [(ngModel)]="radioValue">
+          <label class="fr-label" for="radio-inline-2">Option 2</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Cas avec description (Hint text) -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset" id="radio-hint">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-hint-legend">
+        Boutons radio avec description (Hint text)
+      </legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-hint-1" name="radio-hint" value="hint1">
+          <label class="fr-label" for="radio-hint-1">
+            Option avec description
+            <span class="fr-hint-text">Ceci est une description courte pour aider l'utilisateur.</span>
+          </label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-hint-2" name="radio-hint" value="hint2">
+          <label class="fr-label" for="radio-hint-2">
+            Autre option
+            <span class="fr-hint-text">Une autre description un peu plus longue pour voir le comportement sur plusieurs lignes si nécessaire.</span>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Cas Erreur -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset fr-fieldset--error" id="radio-error" aria-labelledby="radio-error-legend radio-error-desc">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-error-legend">
+        Boutons radio avec erreur
+      </legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-err-1" name="radio-error" value="option1" [(ngModel)]="radioError">
+          <label class="fr-label" for="radio-err-1">Option erreur 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-err-2" name="radio-error" value="option2" [(ngModel)]="radioError">
+          <label class="fr-label" for="radio-err-2">Option erreur 2</label>
+        </div>
+      <p id="radio-error-desc" class="fr-error-text">Message d'erreur obligatoire</p>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Cas Succès -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset fr-fieldset--valid" id="radio-valid" aria-labelledby="radio-valid-legend radio-valid-desc">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-valid-legend">
+        Boutons radio avec succès
+      </legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-ok-1" name="radio-valid" value="option1" [(ngModel)]="radioSuccess">
+          <label class="fr-label" for="radio-ok-1">Option succès 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-ok-2" name="radio-valid" value="option2" [(ngModel)]="radioSuccess">
+          <label class="fr-label" for="radio-ok-2">Option succès 2</label>
+        </div>
+      <p id="radio-valid-desc" class="fr-valid-text">Message de succès !</p>
+      </div>
+    </fieldset>
+  </div>
+
+  <!-- Cas Désactivé -->
+  <div class="fr-col-12 fr-col-md-6">
+    <fieldset class="fr-fieldset" id="radio-disabled">
+      <legend class="fr-fieldset__legend fr-text--regular" id="radio-disabled-legend">
+        Boutons radio désactivés
+      </legend>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-dis-1" name="radio-disabled" value="option1" [(ngModel)]="radioDisabled" disabled>
+          <label class="fr-label" for="radio-dis-1">Option désactivée 1</label>
+        </div>
+      </div>
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group">
+          <input type="radio" id="radio-dis-2" name="radio-disabled" value="option2" [(ngModel)]="radioDisabled" disabled>
+          <label class="fr-label" for="radio-dis-2">Option désactivée 2</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  
+
+</div>

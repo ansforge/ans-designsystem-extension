@@ -1,0 +1,37 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Tuiles (Sizing)</h2>
+  <p>Vérification que les tuiles s'adaptent à leur contenu quand elles ne sont pas contraintes par la grille DSFR (utilisation de <code>fr-col-auto</code> et <code>fr-grid-row--top</code>).</p>
+</div>
+
+<div class="fr-grid-row fr-grid-row--gutters fr-grid-row--top">
+  <!-- Tuile avec peu de contenu -->
+  <div class="fr-col-auto">
+    <div class="fr-tile fr-enlarge-link" style="width: 200px;">
+        <div class="fr-tile__body">
+            <h3 class="fr-tile__title"><a href="#">Petite</a></h3>
+            <p class="fr-tile__desc">Peu de texte.</p>
+        </div>
+    </div>
+  </div>
+
+  <!-- Tuile avec beaucoup de contenu -->
+  <div class="fr-col-auto">
+    <div class="fr-tile fr-enlarge-link" style="width: 300px;">
+        <div class="fr-tile__body">
+            <h3 class="fr-tile__title"><a href="#">Grande Tuile avec beaucoup de texte</a></h3>
+            <p class="fr-tile__desc">Ceci est une description beaucoup plus longue pour forcer la tuile à s'agrandir verticalement et montrer que le radius ANS suit bien la taille du contenu. On a rajouté plusieurs lignes pour être sûr que la différence de hauteur est visible par rapport à sa voisine de gauche.</p>
+        </div>
+    </div>
+  </div>
+
+  <!-- Tuile Small avec contenu moyen -->
+  <div class="fr-col-auto">
+    <div class="fr-tile fr-tile--sm fr-enlarge-link" style="width: 250px;">
+        <div class="fr-tile__body">
+            <h3 class="fr-tile__title"><a href="#">Format SM</a></h3>
+            <p class="fr-tile__desc">Contenu moyen pour le format Small.</p>
+        </div>
+    </div>
+  </div>
+</div>
+

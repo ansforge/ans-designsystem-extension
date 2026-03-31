@@ -1,0 +1,207 @@
+<header role="banner" class="fr-header">
+  <div class="fr-header__body">
+    <div class="fr-container">
+      <div class="fr-header__body-row">
+        <div class="fr-header__brand fr-enlarge-link">
+          <div class="fr-header__brand-top">
+            <div class="fr-header__logo">
+              <p class="fr-logo">
+                RÉPUBLIQUE
+                <br>FRANÇAISE
+              </p>
+            </div>
+          </div>
+          <div class="fr-header__service">
+            <a href="/" title="Accueil - {{title}}">
+              <p class="fr-header__service-title">{{title}}</p>
+            </a>
+            <p class="fr-header__service-tagline">Affichage de tous les composants ANS DSFR</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="fr-container fr-mt-4w fr-mb-4w">
+  
+  <div class="fr-tabs">
+    <ul class="fr-tabs__list" role="tablist" aria-label="Sections de test">
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'showcase'" class="fr-tabs__tab" (click)="activeTab = 'showcase'">Showcase Général</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'buttons'" class="fr-tabs__tab" (click)="activeTab = 'buttons'">Test Boutons</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'badges'" class="fr-tabs__tab" (click)="activeTab = 'badges'">Test Badges</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'radios'" class="fr-tabs__tab" (click)="activeTab = 'radios'">Test Radio</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'alerts'" class="fr-tabs__tab" (click)="activeTab = 'alerts'">Test Alertes</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'checkbox'" class="fr-tabs__tab" (click)="activeTab = 'checkbox'">Test Checkbox</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'input'" class="fr-tabs__tab" (click)="activeTab = 'input'">Test Input</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'select'" class="fr-tabs__tab" (click)="activeTab = 'select'">Test Select</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'button-group'" class="fr-tabs__tab" (click)="activeTab = 'button-group'">Test Button Group</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'link'" class="fr-tabs__tab" (click)="activeTab = 'link'">Test Link</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'stepper'" class="fr-tabs__tab" (click)="activeTab = 'stepper'">Test Stepper</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'modal'" class="fr-tabs__tab" (click)="activeTab = 'modal'">Test Modal</button>
+      </li>
+      <li role="presentation">
+        <button [attr.aria-selected]="activeTab === 'tiles'" class="fr-tabs__tab" (click)="activeTab = 'tiles'">Test Tuiles</button>
+      </li>
+      <li role="presentation">
+       <button [attr.aria-selected]="activeTab === 'header-footer'" class="fr-tabs__tab" (click)="activeTab = 'header-footer'">Test Header/Footer</button>
+      </li>
+    </ul>
+
+    <!-- ONGLET 1 : SHOWCASE GÉNÉRAL -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'showcase'" *ngIf="activeTab === 'showcase'">
+      <app-showcase (modalTrigger)="openModal($event)"></app-showcase>
+    </div>
+
+    <!-- ONGLET 2 : TEST BOUTONS -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'buttons'" *ngIf="activeTab === 'buttons'">
+      <app-button-test></app-button-test>
+    </div>
+
+    <!-- ONGLET 3 : TEST BADGES -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'badges'" *ngIf="activeTab === 'badges'">
+      <app-badge-test></app-badge-test>
+    </div>
+
+    <!-- ONGLET 4 : TEST RADIOS -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'radios'" *ngIf="activeTab === 'radios'">
+      <app-radio-test></app-radio-test>
+    </div>
+
+    <!-- ONGLET 4b : TEST ALERTES -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'alerts'" *ngIf="activeTab === 'alerts'">
+      <app-alert-test></app-alert-test>
+    </div>
+
+    <!-- ONGLET 5 : TEST CHECKBOX -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'checkbox'" *ngIf="activeTab === 'checkbox'">
+      <app-checkbox-test></app-checkbox-test>
+    </div>
+
+    <!-- ONGLET 6 : TEST INPUT -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'input'" *ngIf="activeTab === 'input'">
+      <app-input-test></app-input-test>
+    </div>
+
+    <!-- ONGLET 7 : TEST SELECT -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'select'" *ngIf="activeTab === 'select'">
+      <app-select-test></app-select-test>
+    </div>
+
+    <!-- ONGLET 8 : TEST BUTTON GROUP -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'button-group'" *ngIf="activeTab === 'button-group'">
+      <app-button-group-test></app-button-group-test>
+    </div>
+
+    <!-- ONGLET 9 : TEST LINK -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'link'" *ngIf="activeTab === 'link'">
+      <app-link-test></app-link-test>
+    </div>
+
+    <!-- ONGLET 10 : TEST STEPPER -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'stepper'" *ngIf="activeTab === 'stepper'">
+      <app-stepper-test></app-stepper-test>
+    </div>
+
+
+    <!-- ONGLET 12 : TEST MODAL -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'modal'" *ngIf="activeTab === 'modal'">
+      <app-modal-test></app-modal-test>
+    </div>
+
+    <!-- ONGLET 13 : TEST TUILES -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'tiles'" *ngIf="activeTab === 'tiles'">
+      <app-tile-test></app-tile-test>
+    </div>
+
+    <!-- ONGLET 14 : TEST HEADER/FOOTER -->
+    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'header-footer'" *ngIf="activeTab === 'header-footer'">
+      <app-header-footer-test></app-header-footer-test>
+    </div>
+
+  </div> <!-- Fin fr-tabs -->
+
+</div> <!-- Fin container -->
+
+<dialog id="modal-test" class="fr-modal" role="dialog" aria-labelledby="modal-test-title">
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button class="fr-btn--close fr-btn" aria-controls="modal-test" (click)="closeModal('modal-test')">Fermer</button>
+          </div>
+          <div class="fr-modal__content">
+            <h1 id="modal-test-title" class="fr-modal__title">
+              <span class="fr-icon-arrow-right-line fr-fi--lg"></span>
+              Titre de la modale ANS
+            </h1>
+            <p>Le contenu de la modale est inséré via content projection.</p>
+            <p>Observez bien le <code>border-radius</code> de cette fenêtre !</p>
+          </div>
+          <div class="fr-modal__footer">
+            <ul class="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
+              <li>
+                <button class="fr-btn" aria-controls="modal-test" (click)="closeModal('modal-test')">Valider</button>
+              </li>
+              <li>
+                <button class="fr-btn fr-btn--secondary" aria-controls="modal-test" (click)="closeModal('modal-test')">Annuler</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer class="fr-footer" role="contentinfo" id="footer">
+  <div class="fr-container">
+    <div class="fr-footer__body">
+      <div class="fr-footer__brand fr-enlarge-link">
+        <a href="/" title="Accueil - RÉPUBLIQUE FRANÇAISE">
+          <p class="fr-logo">
+            RÉPUBLIQUE
+            <br>FRANÇAISE
+          </p>
+        </a>
+      </div>
+      <div class="fr-footer__content">
+        <p class="fr-footer__content-desc">Application de test pour les design tokens ANS.</p>
+      </div>
+    </div>
+    <div class="fr-footer__bottom">
+      <ul class="fr-footer__bottom-list">
+        <li class="fr-footer__bottom-item">
+          <a class="fr-footer__bottom-link" href="#">Accessibilité : non conforme</a>
+        </li>
+        <li class="fr-footer__bottom-item">
+          <a class="fr-footer__bottom-link" href="#">Mentions légales</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

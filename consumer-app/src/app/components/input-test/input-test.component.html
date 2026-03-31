@@ -1,0 +1,60 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Champs Texte</h2>
+  <p>Vérification du radius ANS (16px) sur les différents types d'input DSFR.</p>
+</div>
+
+<div class="fr-grid-row fr-grid-row--gutters">
+  
+  <!-- Standard -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group">
+      <label class="fr-label" for="text-standard">Texte standard</label>
+      <input class="fr-input" type="text" id="text-standard" [(ngModel)]="textValue">
+    </div>
+  </div>
+
+  <!-- Avec Icône -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group">
+      <label class="fr-label" for="text-icon">Saisie avec icône</label>
+      <div class="fr-input-wrap fr-icon-calendar-line">
+        <input class="fr-input" type="text" id="text-icon" [(ngModel)]="withIconValue">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Erreur -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group fr-input-group--error">
+      <label class="fr-label" for="text-error">Champ en erreur</label>
+      <input class="fr-input fr-input--error" type="text" id="text-error" placeholder="Erreur ici">
+      <p class="fr-error-text">Ce champ comporte une erreur.</p>
+    </div>
+  </div>
+
+  <!-- Succès -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group fr-input-group--valid">
+      <label class="fr-label" for="text-valid">Champ valide</label>
+      <input class="fr-input fr-input--valid" type="text" id="text-valid" value="Donnée correcte">
+      <p class="fr-valid-text">Bravo, c'est valide.</p>
+    </div>
+  </div>
+
+  <!-- Désactivé -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group">
+      <label class="fr-label" for="text-disabled">Champ désactivé</label>
+      <input class="fr-input" type="text" id="text-disabled" disabled value="Lecture seule">
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-input-group">
+      <label class="fr-label" for="text-area">Zone de texte (Textarea)</label>
+      <textarea class="fr-input" id="text-area" rows="3" [(ngModel)]="areaValue"></textarea>
+    </div>
+  </div>
+</div>
