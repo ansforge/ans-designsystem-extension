@@ -59,23 +59,25 @@ Ce script génère les fichiers dans le dossier `build/css/`.
 - **Tokens** (`ans-tokens.css`) : Les variables sémantiques (ex: `--color-primary-base`).
 - **Pivot** (`ans-dsfr-pivot.css`) : Le cœur du système. Il surcharge les variables natives du DSFR avec les tokens ANS (ex: `--border-plain-blue-france: var(--color-primary-base)`).
 - **Components** (`ans-dsfr-components.css`) : Surcharge spécifique des composants DSFR (Boutons, Badges, Modales, Tuiles, Alertes) pour forcer les arrondis (radius) et les effets visuels ANS.
+## 👁 Aperçu des composants (Consumer App)
+
+Pour visualiser l'effet des surcharges ANS sur les composants DSFR, vous pouvez lancer l'application de démonstration incluse dans le dossier `consumer-app/`. 
+
+**Procédure de lancement :**
+1. Allez dans le dossier : `cd consumer-app`
+2. Installez les dépendances : `npm install`
+3. Lancez le serveur : `npm start`
+4. Accédez à : `http://localhost:4200`
 
 Cette application contient une matrice de test complète pour les boutons, badges, modales, tuiles, alertes, et même un exemple de Header/Footer.
 
 ### 📋 Table de correspondance (PSI → ANS)
 
-Une page de documentation interactive est disponible pour visualiser la correspondance exacte entre les composants de l'application **PSI** et leur rendu avec le thème **ANS** (vrai CSS vs DSFR surchargé).
+Une page de documentation interactive est également disponible pour visualiser la correspondance exacte entre les composants de l'application **PSI** et leur rendu avec le thème **ANS** (vrais composants CSS vs DSFR surchargé).
 
 Pour y accéder :
-1. Lancez l'application : `npm start` (dans le dossier `consumer-app`)
-2. Ouvrez : `http://localhost:4200/correspondance-ds-ans-dsfr.html`
-3. Ou cliquez sur le lien en bas de page de l'application.
-
-**Procédure de lancement de l'application :**
-1. Allez dans le dossier : `cd consumer-app`
-2. Installez les dépendances : `npm install`
-3. Lancez le serveur : `npm start`
-4. Accédez à : `http://localhost:4200`
+1. Une fois l'application lancée, ouvrez : `http://localhost:4200/correspondance-ds-ans-dsfr.html`
+2. Ou cliquez sur le lien en bas de page (footer) de l'application.
 
 Consultez le [README du dossier consumer-app](consumer-app/README.md) pour plus de détails.
 
