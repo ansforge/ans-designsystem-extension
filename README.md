@@ -21,8 +21,10 @@ Ajoutez les fichiers CSS générés dans la section `styles` de votre fichier `a
 ```json
 "styles": [
   "node_modules/@gouvfr/dsfr/dist/dsfr.min.css",
-  "node_modules/ans-design-overrides/pivot",
-  "node_modules/ans-design-overrides/components",
+  "node_modules/@gouvfr/dsfr/dist/utility/icons/icons.min.css",
+  "node_modules/@gouvfr/dsfr/dist/utility/utility.min.css",
+  "node_modules/ans-design-overrides/build/css/ans-dsfr-pivot.css",
+  "node_modules/ans-design-overrides/build/css/ans-dsfr-components.css",
   "src/styles.scss"
 ]
 ```
