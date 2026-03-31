@@ -1,0 +1,75 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Badges</h2>
+  <p>Vérification des propriétés Strictes État: label, size, ellipsis, type, icon. Les radius asymétriques ANS sont appliqués via CSS.</p>
+</div>
+
+<div class="fr-table fr-table--bordered">
+  <table>
+    <thead>
+      <tr>
+        <th>Type d'état</th>
+        <th>Taille MD (Par défaut / Icône native)</th>
+        <th>Taille MD (Sans Icône)</th>
+        <th>Taille SM (Par défaut)</th>
+        <th>Taille SM (Sans Icône)</th>
+        <th>MD (Ellipsis texte long)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Neutre -->
+      <tr>
+        <td><strong>Neutre (Sans type)</strong></td>
+        <td><p class="fr-badge">Neutre</p></td>
+        <td><p class="fr-badge fr-badge--no-icon">Neutre</p></td>
+        <td><p class="fr-badge fr-badge--sm">Neutre</p></td>
+        <td><p class="fr-badge fr-badge--sm fr-badge--no-icon">Neutre</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Description neutre extrêmement longue pour tester la coupure CSS</p></td>
+      </tr>
+      <!-- Information -->
+      <tr>
+        <td><strong>Information</strong></td>
+        <td><p class="fr-badge fr-badge--info">Information</p></td>
+        <td><p class="fr-badge fr-badge--info fr-badge--no-icon">Information</p></td>
+        <td><p class="fr-badge fr-badge--info fr-badge--sm">Information</p></td>
+        <td><p class="fr-badge fr-badge--info fr-badge--sm fr-badge--no-icon">Information</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge fr-badge--info" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Une information beaucoup trop longue qui doit être coupée</p></td>
+      </tr>
+      <!-- Succès -->
+      <tr>
+        <td><strong>Succès</strong></td>
+        <td><p class="fr-badge fr-badge--success">Succès</p></td>
+        <td><p class="fr-badge fr-badge--success fr-badge--no-icon">Succès</p></td>
+        <td><p class="fr-badge fr-badge--success fr-badge--sm">Succès</p></td>
+        <td><p class="fr-badge fr-badge--success fr-badge--sm fr-badge--no-icon">Succès</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge fr-badge--success" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Un succès absolument retentissant et incommensurable</p></td>
+      </tr>
+      <!-- Avertissement -->
+      <tr>
+        <td><strong>Avertissement</strong></td>
+        <td><p class="fr-badge fr-badge--warning">Avertissement</p></td>
+        <td><p class="fr-badge fr-badge--warning fr-badge--no-icon">Avertissement</p></td>
+        <td><p class="fr-badge fr-badge--warning fr-badge--sm">Avertissement</p></td>
+        <td><p class="fr-badge fr-badge--warning fr-badge--sm fr-badge--no-icon">Avertissement</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge fr-badge--warning" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Attention le serveur est potentiellement surchargé par les requêtes</p></td>
+      </tr>
+      <!-- Erreur -->
+      <tr>
+        <td><strong>Erreur</strong></td>
+        <td><p class="fr-badge fr-badge--error">Erreur</p></td>
+        <td><p class="fr-badge fr-badge--error fr-badge--no-icon">Erreur</p></td>
+        <td><p class="fr-badge fr-badge--error fr-badge--sm">Erreur</p></td>
+        <td><p class="fr-badge fr-badge--error fr-badge--sm fr-badge--no-icon">Erreur</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge fr-badge--error" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Erreur critique lors de la connexion à la base de données interne</p></td>
+      </tr>
+      <!-- Nouveau -->
+      <tr>
+        <td><strong>Nouveau</strong></td>
+        <td><p class="fr-badge fr-badge--new">Nouveau</p></td>
+        <td><p class="fr-badge fr-badge--new fr-badge--no-icon">Nouveau</p></td>
+        <td><p class="fr-badge fr-badge--new fr-badge--sm">Nouveau</p></td>
+        <td><p class="fr-badge fr-badge--new fr-badge--sm fr-badge--no-icon">Nouveau</p></td>
+        <td style="max-width: 150px;"><p class="fr-badge fr-badge--new" style="display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Ce produit est flambant neuf et requiert toute votre attention</p></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

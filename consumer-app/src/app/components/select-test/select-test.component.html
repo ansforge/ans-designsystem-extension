@@ -1,0 +1,71 @@
+<div class="fr-mb-4w">
+  <h2>Matrice de test des Listes déroulantes (Select)</h2>
+  <p>Vérification du radius ANS sur les sélecteurs DSFR.</p>
+</div>
+
+<div class="fr-grid-row fr-grid-row--gutters">
+  
+  <!-- Standard -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-select-group">
+      <label class="fr-label" for="select-standard">
+        Sélecteur standard
+        <span class="fr-hint-text">Sélectionnez une option dans la liste ci-dessous.</span>
+      </label>
+      <select class="fr-select" id="select-standard" [(ngModel)]="selectValue">
+        <option value="" selected disabled hidden>Choisir une option</option>
+        <option *ngFor="let opt of options" [value]="opt.value">{{opt.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Avec Groupes -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-select-group">
+      <label class="fr-label" for="select-groups">Avec groupes d'options</label>
+      <select class="fr-select" id="select-groups">
+        <optgroup label="Europe">
+          <option value="FR">France</option>
+          <option value="DE">Allemagne</option>
+        </optgroup>
+        <optgroup label="Asie">
+          <option value="JP">Japon</option>
+          <option value="CN">Chine</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <!-- Erreur -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-select-group fr-select-group--error">
+      <label class="fr-label" for="select-error">Sélecteur en erreur</label>
+      <select class="fr-select fr-select--error" id="select-error">
+        <option value="1">Option invalide</option>
+      </select>
+      <p class="fr-error-text">Veuillez sélectionner une option valide.</p>
+    </div>
+  </div>
+
+  <!-- Succès -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-select-group fr-select-group--valid">
+      <label class="fr-label" for="select-valid">Sélecteur valide</label>
+      <select class="fr-select fr-select--valid" id="select-valid">
+        <option value="1">Option valide sélectionnée</option>
+      </select>
+      <p class="fr-valid-text">Choix pertinent.</p>
+    </div>
+  </div>
+
+  <!-- Désactivé -->
+  <div class="fr-col-12 fr-col-md-6">
+    <div class="fr-select-group">
+      <label class="fr-label" for="select-disabled">Sélecteur désactivé</label>
+      <select class="fr-select" id="select-disabled" disabled>
+        <option value="1">Lecture seule</option>
+      </select>
+    </div>
+  </div>
+
+</div>

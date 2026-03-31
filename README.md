@@ -60,6 +60,20 @@ Ce script génère les fichiers dans le dossier `build/css/`.
 - **Pivot** (`ans-dsfr-pivot.css`) : Le cœur du système. Il surcharge les variables natives du DSFR avec les tokens ANS (ex: `--border-plain-blue-france: var(--color-primary-base)`).
 - **Components** (`ans-dsfr-components.css`) : Surcharge spécifique des composants DSFR (Boutons, Badges, Modales, Tuiles, Alertes) pour forcer les arrondis (radius) et les effets visuels ANS.
 
+## 👁 Aperçu des composants (Consumer App)
+
+Pour visualiser l'effet des surcharges ANS sur les composants DSFR, vous pouvez lancer l'application de démonstration incluse dans le dossier `consumer-app/`. 
+
+Cette application contient une matrice de test complète pour les boutons, badges, modales, tuiles, alertes, et même un exemple de Header/Footer.
+
+**Procédure :**
+1. Allez dans le dossier : `cd consumer-app`
+2. Installez les dépendances : `npm install`
+3. Lancez le serveur : `npm start`
+4. Accédez à : `http://localhost:4200`
+
+Consultez le [README du dossier consumer-app](consumer-app/README.md) pour plus de détails.
+
 ## ✅ Compatibilité Angular
 
 Cette bibliothèque est **compatible avec toutes les versions d'Angular** (v14 à v18+) car elle repose exclusivement sur des variables CSS standard. Elle ne contient aucun composant TypeScript ou logique Angular spécifique, ce qui la rend agnostique du framework.
