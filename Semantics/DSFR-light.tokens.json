@@ -1,6 +1,6 @@
 {
   "background": {
-    "action-low": {
+    "action-low-blue-france": {
       "$type": "color",
       "$value": {
         "colorSpace": "srgb",
@@ -891,7 +891,7 @@
         "com.figma.isOverride": true
       }
     },
-    "plain-informaiton": {
+    "plain-information": {
       "$type": "color",
       "$value": {
         "colorSpace": "srgb",
@@ -1334,7 +1334,7 @@
         "com.figma.isOverride": true
       }
     },
-    "default-informaiton": {
+    "default-information": {
       "$type": "color",
       "$value": {
         "colorSpace": "srgb",

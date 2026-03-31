@@ -63,7 +63,7 @@
 }
 
 /* On force la barre de couleur à suivre l'arrondi et on colore la bordure entière */
-.fr-alert--info { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-informaiton), inset 0 0 0 1px var(--border-plain-informaiton) !important; }
+.fr-alert--info { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-information), inset 0 0 0 1px var(--border-plain-information) !important; }
 .fr-alert--error { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-error), inset 0 0 0 1px var(--border-plain-error) !important; }
 .fr-alert--success { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-success), inset 0 0 0 1px var(--border-plain-success) !important; }
 .fr-alert--warning { box-shadow: inset 0.25rem 0 0 0 var(--border-plain-warning), inset 0 0 0 1px var(--border-plain-warning) !important; }
@@ -183,9 +183,8 @@ dialog[open].fr-modal {
   align-items: center;
 }
 
-/* Forcer le gras uniquement sur le TEXTE du lien au survol, pas sur les icônes */
+/* Suppression du gras au survol, on garde le comportement par défaut du DSFR (souligné) */
 .fr-link:hover {
-  font-weight: var(--font-weight-bold) !important;
   opacity: 1;
 }
 
