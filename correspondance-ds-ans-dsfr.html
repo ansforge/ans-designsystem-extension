@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-scheme="light" data-fr-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <title>Correspondance DS ANS → DSFR</title>
+  <link rel="stylesheet" href="https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/utility/icons/icons.min.css">
+  <style>
+    body {
+      font-family: 'Marianne', system-ui, -apple-system, sans-serif;
+      margin: 0; padding: 0;
+      background: #f6f6f6;
+    }
+    .page-header {
+      background: #000091;
+      color: white;
+      padding: 2rem 2rem 1.5rem;
+    }
+    .page-header h1 { margin: 0 0 .5rem; font-size: 1.75rem; }
+    .page-header p { margin: 0; opacity: .85; font-size: .95rem; }
+
+    .legend {
+      display: flex; gap: 2rem; padding: 1rem 2rem;
+      background: #fff; border-bottom: 1px solid #dee2e6;
+      font-size: .85rem; align-items: center;
+    }
+    .legend-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: .4rem; vertical-align: middle; }
+    .legend-dot--ans { background: #e74c3c; }
+    .legend-dot--dsfr { background: #000091; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+    .comp-section {
+      background: #fff; border-radius: 8px; margin-bottom: 2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden;
+    }
+    .comp-section__header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.5rem; background: #f0f0f5;
+      border-bottom: 1px solid #dee2e6;
+    }
+    .comp-section__number {
+      background: #000091; color: white; width: 28px; height: 28px;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: .8rem; font-weight: 700; flex-shrink: 0;
+    }
+    .comp-section__title { font-size: 1.1rem; font-weight: 700; margin: 0; }
+
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .comp-grid--no-override { grid-template-columns: 1fr 1fr; }
+    .comp-col { padding: 1.5rem; }
+    .comp-col--ans { background: #fff8f8; border-right: 2px dashed #dee2e6; }
+    .comp-col--dsfr { background: #f8f8ff; border-right: 2px dashed #dee2e6; }
+    .comp-col--dsfr-ans { background: #f0fff0; }
+    .comp-grid--no-override .comp-col--dsfr { border-right: none; }
+    .comp-col__label {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .comp-col__label--ans { color: #e74c3c; }
+    .comp-col__label--dsfr { color: #000091; }
+    .comp-col__label--dsfr-ans { color: #1D71B8; }
+    .legend-dot--dsfr-ans { background: #1D71B8; }
+
+    .visual-demo { margin-bottom: 1rem; }
+
+    .ans-frame {
+      border: none; width: 100%; min-height: 60px;
+      border-radius: 4px; background: white;
+    }
+
+    .class-list {
+      background: #1e1e2e; color: #cdd6f4; border-radius: 6px;
+      padding: .75rem 1rem; font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: .75rem; line-height: 1.7; overflow-x: auto;
+    }
+    .class-list .cls { color: #89b4fa; }
+    .class-list .mod { color: #a6e3a1; }
+    .class-list .comment { color: #6c7086; font-style: italic; }
+
+    .notes {
+      margin-top: .75rem; padding: .75rem 1rem;
+      background: #fff9e6; border-left: 3px solid #f9e2af;
+      font-size: .78rem; color: #5c4d1e; border-radius: 0 4px 4px 0;
+    }
+    .notes strong { color: #8a6d00; }
+
+    @media (max-width: 768px) {
+      .comp-grid { grid-template-columns: 1fr; }
+      .comp-col--ans { border-right: none; border-bottom: 2px dashed #dee2e6; }
+      .comp-col--dsfr { border-right: none; border-bottom: 2px dashed #dee2e6; }
+      .comp-grid--no-override .comp-col--dsfr { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Correspondance DS ANS → DSFR</h1>
+  <p>Table de migration des composants — Projet PSI &middot; Vrais composants rendus avec leur CSS respectif</p>
+</div>
+
+<div class="legend">
+  <div><span class="legend-dot legend-dot--ans"></span> DS ANS (vrai CSS)</div>
+  <div><span class="legend-dot legend-dot--dsfr"></span> DSFR (vrai CSS)</div>
+  <div><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + Override ANS (npm: ans-design-overrides)</div>
+  <div style="margin-left:auto; color: #6c757d; font-size:.8rem;">11 composants + 1 pattern de validation</div>
+</div>
+
+<div class="container">
+
+  <!-- ============ 1. BOUTON ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">1</div>
+      <h2 class="comp-section__title">Bouton</h2>
+    </div>
+
+    <!-- En-tete des colonnes -->
+    <div class="comp-grid" style="border-bottom:1px solid #dee2e6;">
+      <div class="comp-col" style="padding:.5rem 1.5rem;background:#fff8f8;">
+        <div class="comp-col__label comp-col__label--ans" style="margin:0;"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+      </div>
+      <div class="comp-col" style="padding:.5rem 1.5rem;background:#f8f8ff;">
+        <div class="comp-col__label comp-col__label--dsfr" style="margin:0;"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+      </div>
+      <div class="comp-col" style="padding:.5rem 1.5rem;background:#f0fff0;">
+        <div class="comp-col__label comp-col__label--dsfr-ans" style="margin:0;"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+      </div>
+    </div>
+
+    <!-- Primary -->
+    <div class="comp-grid" style="border-bottom:1px solid #eee;">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button type='button' class='btn btn--plain btn--primary'>Primary</button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn .btn--plain .btn--primary</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;">
+        <button class="fr-btn">Primary</button>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.fr-btn</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button class='fr-btn'>Primary</button>
+        "></iframe>
+      </div>
+    </div>
+
+    <!-- Secondary / Ghost primary -->
+    <div class="comp-grid" style="border-bottom:1px solid #eee;">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button type='button' class='btn btn--ghost btn--primary'>Ghost primary</button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn .btn--ghost .btn--primary</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;">
+        <button class="fr-btn fr-btn--secondary">Secondary</button>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.fr-btn--secondary</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button class='fr-btn fr-btn--secondary'>Secondary</button>
+        "></iframe>
+      </div>
+    </div>
+
+    <!-- Tertiary / Ghost default -->
+    <div class="comp-grid" style="border-bottom:1px solid #eee;">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button type='button' class='btn btn--ghost btn--default'>Ghost default</button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn .btn--ghost .btn--default</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;">
+        <button class="fr-btn fr-btn--tertiary">Tertiary</button>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.fr-btn--tertiary</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button class='fr-btn fr-btn--tertiary'>Tertiary</button>
+        "></iframe>
+      </div>
+    </div>
+
+    <!-- Disabled -->
+    <div class="comp-grid" style="border-bottom:1px solid #eee;">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button type='button' disabled class='btn btn--plain btn--primary'>Disabled</button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn .btn--plain [disabled]</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;">
+        <button class="fr-btn" disabled>Disabled</button>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.fr-btn [disabled]</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;color-scheme:light only;}</style>
+          <button class='fr-btn' disabled>Disabled</button>
+        "></iframe>
+      </div>
+    </div>
+
+    <!-- Tailles -->
+    <div class="comp-grid" style="border-bottom:1px solid #eee;">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;display:flex;gap:8px;align-items:center;color-scheme:light only;}</style>
+          <button type='button' class='btn btn--plain btn--primary btn-sm'>SM</button>
+          <button type='button' class='btn btn--plain btn--primary'>MD</button>
+          <button type='button' class='btn btn--plain btn--primary btn-lg'>LG</button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn-sm</code> | defaut | <code>.btn-lg</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;display:flex;flex-direction:column;gap:4px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="fr-btn fr-btn--sm">SM</button>
+          <button class="fr-btn">MD</button>
+          <button class="fr-btn fr-btn--lg">LG</button>
+        </div>
+        <div style="font-size:.7rem;color:#999;"><code>.fr-btn--sm</code> | defaut | <code>.fr-btn--lg</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;display:flex;gap:8px;align-items:center;color-scheme:light only;}</style>
+          <button class='fr-btn fr-btn--sm'>SM</button>
+          <button class='fr-btn'>MD</button>
+          <button class='fr-btn fr-btn--lg'>LG</button>
+        "></iframe>
+      </div>
+    </div>
+
+    <!-- Avec icone -->
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;display:flex;gap:8px;align-items:center;color-scheme:light only;}</style>
+          <button type='button' class='btn btn--plain btn--primary btn--icon-before'><svg class='svg-icon svg-angle-right' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#angle-right'></use></svg>Avec icone</button>
+          <button type='button' class='btn btn--plain btn--primary btn--icon-only'><svg class='svg-icon svg-close' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#close'></use></svg><span class='sr-only'>Fermer</span></button>
+        "></iframe>
+        <div style="font-size:.7rem;color:#999;margin-top:4px;"><code>.btn--icon-before</code> | <code>.btn--icon-only</code></div>
+      </div>
+      <div class="comp-col comp-col--dsfr" style="padding:1rem 1.5rem;display:flex;flex-direction:column;gap:4px;">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="fr-btn fr-icon-arrow-right-line fr-btn--icon-left">Avec icone</button>
+          <button class="fr-btn fr-icon-close-line" title="Fermer"></button>
+        </div>
+        <div style="font-size:.7rem;color:#999;"><code>.fr-btn--icon-left</code> | icon-only</div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans" style="padding:1rem 1.5rem;">
+        <iframe class="ans-frame" srcdoc="
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/utility/icons/icons.min.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+          <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+          <meta name='color-scheme' content='light only'><style>body{margin:8px;background:transparent;display:flex;gap:8px;align-items:center;color-scheme:light only;}</style>
+          <button class='fr-btn fr-icon-arrow-right-line fr-btn--icon-left'>Avec icone</button>
+          <button class='fr-btn fr-icon-close-line' title='Fermer'></button>
+        "></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 2. GROUPE DE BOUTONS ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">2</div>
+      <h2 class="comp-section__title">Groupe de boutons</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='btn-group'>
+              <button type='button' class='btn btn--ghost btn--default'>Secondaire</button>
+              <button type='button' class='btn btn--plain btn--primary'>Primaire</button>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.btn-group</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <ul class="fr-btns-group fr-btns-group--inline">
+            <li><button class="fr-btn fr-btn--secondary">Secondaire</button></li>
+            <li><button class="fr-btn">Primaire</button></li>
+          </ul>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-btns-group</span> <span class="mod">.fr-btns-group--inline</span><br>
+          <span class="comment">// structure : ul > li > button</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <ul class='fr-btns-group fr-btns-group--inline'>
+              <li><button class='fr-btn fr-btn--secondary'>Secondaire</button></li>
+              <li><button class='fr-btn'>Primaire</button></li>
+            </ul>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 3. CHAMP DE SAISIE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">3</div>
+      <h2 class="comp-section__title">Champ de saisie (Input)</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='form-group'>
+              <label for='i1'>Label du champ</label>
+              <input class='form-control' name='i1' type='text' id='i1' placeholder='Saisir une valeur' aria-describedby='i1-desc'>
+              <p class='description' id='i1-desc'>Texte d'aide descriptif</p>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.form-group</span> <span class="comment">// conteneur</span><br>
+          <span class="cls">.form-control</span> <span class="comment">// input</span><br>
+          <span class="cls">.description</span> <span class="comment">// texte d'aide</span><br>
+          <span class="cls">.form-box</span> + <span class="cls">.form-box__title</span> <span class="comment">// fieldset</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <div class="fr-input-group">
+            <label class="fr-label" for="d-i1">Label du champ
+              <span class="fr-hint-text">Texte d'aide descriptif</span>
+            </label>
+            <input class="fr-input" type="text" id="d-i1" placeholder="Saisir une valeur">
+          </div>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-input-group</span> <span class="comment">// conteneur</span><br>
+          <span class="cls">.fr-label</span> <span class="comment">// label</span><br>
+          <span class="cls">.fr-input</span> <span class="comment">// input</span><br>
+          <span class="cls">.fr-hint-text</span> <span class="comment">// texte d'aide (dans le label)</span>
+        </div>
+        <div class="notes">
+          <strong>Refonte structurelle :</strong> Le hint est <em>dans</em> le <code>&lt;label&gt;</code> en DSFR. Le fieldset ANS (<code>.form-box</code>) devient un <code>&lt;fieldset class="fr-fieldset"&gt;</code>.
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='fr-input-group'>
+              <label class='fr-label' for='ans-i1'>Label du champ
+                <span class='fr-hint-text'>Texte d'aide descriptif</span>
+              </label>
+              <input class='fr-input' type='text' id='ans-i1' placeholder='Saisir une valeur'>
+            </div>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 4. CHECKBOX ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">4</div>
+      <h2 class="comp-section__title">Case a cocher (Checkbox)</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:90px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <fieldset>
+              <legend>Options</legend>
+              <div class='custom-control custom-checkbox'>
+                <input type='checkbox' class='custom-control-input' id='c1' checked='checked'>
+                <label class='custom-control-label' for='c1'>Option selectionnee</label>
+              </div>
+              <div class='custom-control custom-checkbox'>
+                <input type='checkbox' class='custom-control-input' id='c2'>
+                <label class='custom-control-label' for='c2'>Autre option</label>
+              </div>
+            </fieldset>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.custom-control</span> <span class="cls">.custom-checkbox</span><br>
+          <span class="cls">.custom-control-input</span><br>
+          <span class="cls">.custom-control-label</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <fieldset class="fr-fieldset" aria-labelledby="cb-legend">
+            <legend class="fr-fieldset__legend" id="cb-legend">Options</legend>
+            <div class="fr-fieldset__element">
+              <div class="fr-checkbox-group">
+                <input type="checkbox" id="d-c1" checked>
+                <label class="fr-label" for="d-c1">Option selectionnee</label>
+              </div>
+            </div>
+            <div class="fr-fieldset__element">
+              <div class="fr-checkbox-group">
+                <input type="checkbox" id="d-c2">
+                <label class="fr-label" for="d-c2">Autre option</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-fieldset</span> <span class="comment">// groupe</span><br>
+          <span class="cls">.fr-fieldset__element</span><br>
+          <span class="cls">.fr-checkbox-group</span> <span class="comment">// wrapper checkbox</span><br>
+          <span class="cls">.fr-label</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:90px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <fieldset class='fr-fieldset' aria-labelledby='ans-cb-legend'>
+              <legend class='fr-fieldset__legend' id='ans-cb-legend'>Options</legend>
+              <div class='fr-fieldset__element'>
+                <div class='fr-checkbox-group'>
+                  <input type='checkbox' id='ans-c1' checked>
+                  <label class='fr-label' for='ans-c1'>Option selectionnee</label>
+                </div>
+              </div>
+              <div class='fr-fieldset__element'>
+                <div class='fr-checkbox-group'>
+                  <input type='checkbox' id='ans-c2'>
+                  <label class='fr-label' for='ans-c2'>Autre option</label>
+                </div>
+              </div>
+            </fieldset>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 5. LIEN ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">5</div>
+      <h2 class="comp-section__title">Lien</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:50px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <p>Texte avec un <a href='#' target='_blank'>lien externe</a> dans du contenu.</p>
+            <p><a href='#' class='btn--icon-before'><svg class='svg-icon svg-angle-right' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#angle-right'></use></svg>Lien avec icone</a></p>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.external-link</span> <span class="comment">// ajout auto par JS sur target=_blank</span><br>
+          <span class="cls">.btn--icon-before</span> <span class="comment">// lien avec icone</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo" style="display:flex; flex-direction:column; gap:8px; align-items:flex-start;">
+          <a class="fr-link fr-icon-external-link-line fr-link--icon-right" href="#" onclick="return false" target="_blank" rel="noopener">Lien externe</a>
+          <a class="fr-link fr-icon-arrow-right-line fr-link--icon-left" href="#" onclick="return false">Lien avec icone</a>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-link</span><br>
+          <span class="mod">.fr-link--icon-right</span> | <span class="mod">.fr-link--icon-left</span><br>
+          <span class="mod">.fr-icon-external-link-line</span> <span class="comment">// icone en classe utilitaire</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:50px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/utility/icons/icons.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;display:flex;flex-direction:column;gap:8px;align-items:flex-start;color-scheme:light only;}</style>
+            <a class='fr-link fr-icon-external-link-line fr-link--icon-right' href='#' onclick='return false'>Lien externe (survolez)</a>
+            <a class='fr-link fr-icon-arrow-right-line fr-link--icon-left' href='#' onclick='return false'>Lien avec icone</a>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 6. ICONE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">6</div>
+      <h2 class="comp-section__title">Icone</h2>
+    </div>
+    <div class="comp-grid comp-grid--no-override">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:50px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;display:flex;gap:12px;align-items:center;color-scheme:light only;}</style>
+            <svg class='svg-icon svg-search' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#search'></use></svg>
+            <svg class='svg-icon svg-user' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#user'></use></svg>
+            <svg class='svg-icon svg-close' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#close'></use></svg>
+            <svg class='svg-icon svg-calendar' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#calendar'></use></svg>
+            <svg class='svg-icon svg-external-link' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#external-link'></use></svg>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.svg-icon</span> <span class="cls">.svg-{name}</span><br>
+          <span class="comment">// SVG sprite : &lt;use xlink:href=&quot;icon-sprite.svg#{name}&quot;&gt;</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo" style="display:flex;gap:12px;align-items:center;">
+          <span class="fr-icon-search-line" aria-hidden="true"></span>
+          <span class="fr-icon-user-line" aria-hidden="true"></span>
+          <span class="fr-icon-close-line" aria-hidden="true"></span>
+          <span class="fr-icon-calendar-line" aria-hidden="true"></span>
+          <span class="fr-icon-external-link-line" aria-hidden="true"></span>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-icon-{name}</span><br>
+          <span class="mod">.fr-icon--sm</span> <span class="mod">.fr-icon--lg</span><br>
+          <span class="comment">// Classe utilitaire sur &lt;span&gt;, pas de SVG inline</span>
+        </div>
+        <div class="notes">
+          <strong>Changement de paradigme :</strong> On passe de SVG sprites inline (<code>&lt;svg&gt;&lt;use&gt;</code>) a des classes CSS utilitaires. Pas de SVG dans le markup.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 7. ALERTE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">7</div>
+      <h2 class="comp-section__title">Alerte</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:90px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='o-alert o-alert--info' role='status'>
+              <div class='o-alert__icon'>
+                <svg class='svg-icon svg-circle-info' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#circle-info'></use></svg>
+              </div>
+              <h2 class='o-alert__title'>Titre de l'alerte</h2>
+              <p>Description du message informatif.</p>
+              <button type='button' class='btn btn--close btn--icon-only'><svg class='svg-icon svg-close' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#close'></use></svg><span class='sr-only'>Fermer</span></button>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.o-alert</span><br>
+          <span class="mod">.o-alert--info</span> <span class="mod">.o-alert--error</span><br>
+          <span class="mod">.o-alert--warning</span> <span class="mod">.o-alert--success</span><br>
+          <span class="cls">.o-alert__icon</span> <span class="cls">.o-alert__title</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <div class="fr-alert fr-alert--info">
+            <h3 class="fr-alert__title">Titre de l'alerte</h3>
+            <p>Description du message informatif.</p>
+          </div>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-alert</span><br>
+          <span class="mod">.fr-alert--info</span> <span class="mod">.fr-alert--error</span><br>
+          <span class="mod">.fr-alert--warning</span> <span class="mod">.fr-alert--success</span><br>
+          <span class="cls">.fr-alert__title</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:90px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='fr-alert fr-alert--info' style='margin-bottom:8px;'>
+              <h3 class='fr-alert__title'>Titre de l'alerte</h3>
+              <p>Description du message informatif.</p>
+            </div>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 8. EN-TETE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">8</div>
+      <h2 class="comp-section__title">En-tete (Header)</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:80px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:0;background:transparent;color-scheme:light only;} .header-principal{position:relative;}</style>
+            <header class='header header-principal' role='banner'>
+              <div class='header-principal__inner'>
+                <div class='header-principal-left'>
+                  <div class='logos'>
+                    <div class='logo logo--0'>
+                      <a href='#'>
+                        <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ministere.svg' alt='Ministere' width='107' height='62'>
+                      </a>
+                    </div>
+                    <div class='logo logo--1'>
+                      <a href='#'>
+                        <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ANS.svg' alt='ANS' width='166' height='50'>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class='header-principal-right'>
+                  <nav role='navigation' aria-label='Menu'>
+                    <ul class='navbar-nav nav-lvl--1' style='display:flex;gap:1rem;list-style:none;margin:0;padding:0;font-size:.85rem;'>
+                      <li class='nav-item'><a class='nav-link' href='#'>Accueil</a></li>
+                      <li class='nav-item is-active'><a class='nav-link' href='#'>Services</a></li>
+                      <li class='nav-item'><a class='nav-link' href='#'>Contact</a></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </header>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.header-principal</span><br>
+          <span class="cls">.header-principal__inner</span><br>
+          <span class="cls">.header-principal-left</span> <span class="comment">// logos</span><br>
+          <span class="cls">.header-principal-right</span> <span class="comment">// nav</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <header role="banner" class="fr-header">
+            <div class="fr-header__body">
+              <div class="fr-container">
+                <div class="fr-header__body-row">
+                  <div class="fr-header__brand fr-enlarge-link">
+                    <div class="fr-header__brand-top">
+                      <div class="fr-header__logo">
+                        <p class="fr-logo">Republique<br>Francaise</p>
+                      </div>
+                    </div>
+                    <div class="fr-header__service">
+                      <a href="#" title="Nom du service" onclick="return false">
+                        <p class="fr-header__service-title">Nom du service</p>
+                      </a>
+                      <p class="fr-header__service-tagline">Baseline du service</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-header</span><br>
+          <span class="cls">.fr-header__body</span> <span class="cls">.fr-header__body-row</span><br>
+          <span class="cls">.fr-header__brand</span> <span class="cls">.fr-header__logo</span><br>
+          <span class="cls">.fr-header__service</span> <span class="cls">.fr-header__service-title</span>
+        </div>
+        <div class="notes">
+          <strong>Structure imposee :</strong> Le DSFR exige le Bloc marque (Marianne). Le logo ANS se place dans <code>.fr-header__operator</code> comme logo operateur.
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:80px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:0;background:transparent;color-scheme:light only;}</style>
+            <header role='banner' class='fr-header'>
+              <div class='fr-header__body'>
+                <div class='fr-container'>
+                  <div class='fr-header__body-row'>
+                    <div class='fr-header__brand fr-enlarge-link'>
+                      <div class='fr-header__brand-top'>
+                        <div class='fr-header__logo'>
+                          <p class='fr-logo'>Republique<br>Francaise</p>
+                        </div>
+                        <div class='fr-header__operator'>
+                          <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ANS.svg' alt='ANS' style='height:50px;'>
+                        </div>
+                      </div>
+                      <div class='fr-header__service'>
+                        <a href='#' title='Nom du service' onclick='return false'>
+                          <p class='fr-header__service-title'>Nom du service</p>
+                        </a>
+                        <p class='fr-header__service-tagline'>Baseline du service</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </header>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 9. PIED DE PAGE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">9</div>
+      <h2 class="comp-section__title">Pied de page (Footer)</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:0;background:transparent;color-scheme:light only;}</style>
+            <footer class='footer footer-principal' role='contentinfo'>
+              <div class='footer__region2'>
+                <div class='container'>
+                  <div class='footer-contentinfo'>
+                    <ul class='footer-list footer-list--inline'>
+                      <li class='footer-list__item'><a href='#'>Mentions legales</a></li>
+                      <li class='footer-list__item'><a href='#'>Accessibilite</a></li>
+                      <li class='footer-list__item'><a href='#'>Donnees personnelles</a></li>
+                      <li class='footer-list__item'><a href='#'>Contact</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.footer-principal</span><br>
+          <span class="cls">.footer-contentinfo</span><br>
+          <span class="cls">.footer-list--inline</span><br>
+          <span class="cls">.footer-list__item</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <footer class="fr-footer" role="contentinfo">
+            <div class="fr-container">
+              <div class="fr-footer__body">
+                <div class="fr-footer__brand fr-enlarge-link">
+                  <p class="fr-logo">Republique<br>Francaise</p>
+                </div>
+                <div class="fr-footer__content">
+                  <p class="fr-footer__content-desc">Description du service</p>
+                </div>
+              </div>
+              <div class="fr-footer__bottom">
+                <ul class="fr-footer__bottom-list">
+                  <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#" onclick="return false">Mentions legales</a></li>
+                  <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#" onclick="return false">Accessibilite</a></li>
+                  <li class="fr-footer__bottom-item"><a class="fr-footer__bottom-link" href="#" onclick="return false">Donnees personnelles</a></li>
+                </ul>
+              </div>
+            </div>
+          </footer>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-footer</span><br>
+          <span class="cls">.fr-footer__body</span> <span class="cls">.fr-footer__brand</span><br>
+          <span class="cls">.fr-footer__bottom</span><br>
+          <span class="cls">.fr-footer__bottom-list</span> <span class="cls">.fr-footer__bottom-item</span><br>
+          <span class="cls">.fr-footer__bottom-link</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:0;background:transparent;color-scheme:light only;}</style>
+            <footer class='fr-footer' role='contentinfo'>
+              <div class='fr-container'>
+                <div class='fr-footer__body'>
+                  <div class='fr-footer__brand fr-enlarge-link'>
+                    <p class='fr-logo'>Republique<br>Francaise</p>
+                    <div class='fr-footer__brand-link' style='margin-left:1rem;'>
+                      <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ANS.svg' alt='ANS' style='height:40px;'>
+                    </div>
+                  </div>
+                  <div class='fr-footer__content'>
+                    <p class='fr-footer__content-desc'>Description du service</p>
+                  </div>
+                </div>
+                <div class='fr-footer__bottom'>
+                  <ul class='fr-footer__bottom-list'>
+                    <li class='fr-footer__bottom-item'><a class='fr-footer__bottom-link' href='#' onclick='return false'>Mentions legales</a></li>
+                    <li class='fr-footer__bottom-item'><a class='fr-footer__bottom-link' href='#' onclick='return false'>Accessibilite</a></li>
+                    <li class='fr-footer__bottom-item'><a class='fr-footer__bottom-link' href='#' onclick='return false'>Donnees personnelles</a></li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 10. MODALE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">10</div>
+      <h2 class="comp-section__title">Modale</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:160px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>
+              body{margin:12px;background:transparent;color-scheme:light only;}
+              .modal{display:block;position:relative;opacity:1;}
+              .modal-dialog{margin:0;max-width:100%;}
+              .modal-backdrop{display:none;}
+            </style>
+            <div class='modal' tabindex='-1' role='dialog'>
+              <div class='modal-dialog modal-dialog-centered' role='document'>
+                <div class='modal-content'>
+                  <div class='modal-header'>
+                    <h1 class='modal-title'>Titre de la modale</h1>
+                    <button type='button' class='btn btn--close btn--icon-only'><svg class='svg-icon svg-close' aria-hidden='true' focusable='false'><use xlink:href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/svg-icons/icon-sprite.svg#close'></use></svg><span class='sr-only'>Fermer</span></button>
+                  </div>
+                  <div class='modal-body'>
+                    <p>Contenu de la modale avec du texte explicatif pour l'utilisateur.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.modal</span> <span class="cls">.modal-dialog</span> <span class="mod">.modal-dialog-centered</span><br>
+          <span class="cls">.modal-content</span><br>
+          <span class="cls">.modal-header</span> <span class="cls">.modal-title</span><br>
+          <span class="cls">.modal-body</span> <span class="cls">.modal-footer</span><br>
+          <span class="mod">.modal-lg</span> <span class="comment">// taille large</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <!-- Static DSFR modal preview -->
+          <div style="border:1px solid #e5e5e5; border-radius:8px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.1);">
+            <div class="fr-modal__body" style="padding:0;">
+              <div class="fr-modal__header" style="padding:.75rem 1rem; display:flex; justify-content:flex-end;">
+                <button class="fr-btn--close fr-btn" title="Fermer">Fermer</button>
+              </div>
+              <div style="padding:0 1.5rem;">
+                <h1 class="fr-modal__title" style="font-size:1.1rem;">Titre de la modale</h1>
+              </div>
+              <div class="fr-modal__content" style="padding:.5rem 1.5rem 1.5rem;">
+                <p>Contenu de la modale avec du texte explicatif pour l'utilisateur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-modal</span><br>
+          <span class="cls">.fr-modal__body</span><br>
+          <span class="cls">.fr-modal__header</span> <span class="cls">.fr-modal__title</span><br>
+          <span class="cls">.fr-modal__content</span><br>
+          <span class="cls">.fr-modal__footer</span>
+        </div>
+        <div class="notes">
+          <strong>JS different :</strong> Le DSFR utilise <code>aria-controls</code> + <code>dsfr.modal</code> au lieu de jQuery/Bootstrap (<code>data-toggle="modal"</code>).
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:180px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>
+              body{margin:20px;background:transparent;color-scheme:light only;}
+              .modal-preview{
+                border-radius:var(--radius-modal-desktop-top-left,56px) var(--radius-modal-desktop-top-right,56px) var(--radius-modal-desktop-bottom-right,56px) var(--radius-modal-desktop-bottom-left,56px);
+                box-shadow:0 0 40px 14px rgba(52,56,82,.1);
+                background:#fff;
+                overflow:hidden;
+                padding:1.5rem 2rem;
+              }
+              .modal-preview h1{font-size:1.1rem;margin:0 0 .5rem;}
+              .modal-preview p{font-size:.9rem;margin:0 0 1rem;}
+              .modal-preview .footer-btns{display:flex;gap:.5rem;justify-content:flex-end;}
+            </style>
+            <div class='modal-preview'>
+              <h1>Titre de la modale</h1>
+              <p>Contenu de la modale avec du texte explicatif pour l'utilisateur.</p>
+              <div class='footer-btns'>
+                <button class='fr-btn fr-btn--secondary fr-btn--sm'>Annuler</button>
+                <button class='fr-btn fr-btn--sm'>Confirmer</button>
+              </div>
+            </div>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 11. LOGO / BLOC MARQUE ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">11</div>
+      <h2 class="comp-section__title">Logo / Bloc marque</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:80px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='logos'>
+              <div class='logo logo--0'>
+                <a href='#'>
+                  <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ministere.svg' alt='Ministere' width='107' height='62'>
+                </a>
+              </div>
+              <div class='logo logo--1'>
+                <a href='#'>
+                  <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ANS.svg' alt='ANS' width='166' height='50'>
+                </a>
+              </div>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.logos</span> <span class="comment">// conteneur</span><br>
+          <span class="cls">.logo</span> <span class="cls">.logo--0</span> <span class="comment">// logo principal</span><br>
+          <span class="cls">.logo</span> <span class="cls">.logo--1</span> <span class="comment">// logo secondaire</span><br>
+          <span class="comment">// Logos = images (&lt;img&gt;)</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <p class="fr-logo">Republique<br>Francaise</p>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-logo</span> <span class="comment">// Bloc marque (Marianne en CSS)</span><br>
+          <span class="mod">.fr-logo--sm</span> <span class="mod">.fr-logo--lg</span><br>
+          <span class="comment">// Logo operateur → .fr-header__operator &lt;img&gt;</span>
+        </div>
+        <div class="notes">
+          <strong>Concept different :</strong> <code>.fr-logo</code> = Bloc marque Republique (Marianne rendue en CSS pur, pas une image). Le logo ANS en tant qu'operateur se place dans <code>.fr-header__operator</code>.
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:80px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;display:flex;align-items:center;gap:1rem;}</style>
+            <p class='fr-logo'>Republique<br>Francaise</p>
+            <div class='fr-header__operator'>
+              <img src='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/img/logo-ANS.svg' alt='ANS' style='height:50px;'>
+            </div>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 12. VALIDATION ============ -->
+  <div class="comp-section">
+    <div class="comp-section__header">
+      <div class="comp-section__number">12</div>
+      <h2 class="comp-section__title">Validation / Etat d'erreur</h2>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-col comp-col--ans">
+        <div class="comp-col__label comp-col__label--ans"><span class="legend-dot legend-dot--ans"></span> DS ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://use.typekit.net/jjx2ksb.css'>
+            <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/ansforge/DesignSystem@main/site/style/style-ans.css'>
+            <meta name='color-scheme' content='light only'><style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='form-group is-invalid'>
+              <label for='e1'>Email</label>
+              <input class='form-control is-invalid' name='e1' type='text' value='invalide@' aria-invalid='true' aria-describedby='e1-err' id='e1'>
+              <p class='description' id='e1-err'>Format d'email invalide</p>
+            </div>
+          "></iframe>
+        </div>
+        <div class="class-list">
+          <span class="cls">.is-invalid</span> <span class="comment">// sur .form-group ET .form-control</span>
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr">
+        <div class="comp-col__label comp-col__label--dsfr"><span class="legend-dot legend-dot--dsfr"></span> DSFR</div>
+        <div class="visual-demo">
+          <div class="fr-input-group fr-input-group--error">
+            <label class="fr-label" for="d-e1">Email</label>
+            <input class="fr-input fr-input--error" type="text" id="d-e1" value="invalide@" aria-describedby="d-e1-err">
+            <div class="fr-messages-group" id="d-e1-err" aria-live="polite">
+              <p class="fr-message fr-message--error">Format d'email invalide</p>
+            </div>
+          </div>
+        </div>
+        <div class="class-list">
+          <span class="cls">.fr-input-group--error</span> <span class="comment">// sur le groupe</span><br>
+          <span class="cls">.fr-input--error</span> <span class="comment">// sur l'input</span><br>
+          <span class="cls">.fr-messages-group</span> <span class="comment">// conteneur messages</span><br>
+          <span class="cls">.fr-message--error</span>
+        </div>
+        <div class="notes">
+          <strong>Pattern plus riche :</strong> Le DSFR separe l'etat entre groupe, input, et un bloc <code>.fr-messages-group</code> avec <code>aria-live="polite"</code>.
+        </div>
+      </div>
+      <div class="comp-col comp-col--dsfr-ans">
+        <div class="comp-col__label comp-col__label--dsfr-ans"><span class="legend-dot legend-dot--dsfr-ans"></span> DSFR + ANS</div>
+        <div class="visual-demo">
+          <iframe class="ans-frame" style="min-height:100px;" srcdoc="
+            <link rel='stylesheet' href='https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.min.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-pivot.css'>
+            <link rel='stylesheet' href='https://unpkg.com/ans-design-overrides@1.0.0/build/css/ans-dsfr-components.css'>
+            <meta name='color-scheme' content='light only'>
+            <style>body{margin:12px;background:transparent;color-scheme:light only;}</style>
+            <div class='fr-input-group fr-input-group--error'>
+              <label class='fr-label' for='ans-e1'>Email</label>
+              <input class='fr-input fr-input--error' type='text' id='ans-e1' value='invalide@' aria-describedby='ans-e1-err'>
+              <div class='fr-messages-group' id='ans-e1-err' aria-live='polite'>
+                <p class='fr-message fr-message--error'>Format d'email invalide</p>
+              </div>
+            </div>
+          "></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Auto-resize iframes to fit content
+  document.querySelectorAll('.ans-frame').forEach(frame => {
+    frame.addEventListener('load', () => {
+      try {
+        const body = frame.contentDocument.body;
+        const html = frame.contentDocument.documentElement;
+        const height = Math.max(body.scrollHeight, body.offsetHeight, html.scrollHeight, html.offsetHeight);
+        frame.style.height = height + 4 + 'px';
+      } catch(e) {}
+    });
+  });
+</script>
+
+<script src="https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.module.min.js" type="module"></script>
+<script src="https://unpkg.com/@gouvfr/dsfr@1.13.0/dist/dsfr.nomodule.min.js" nomodule></script>
+<script>
+  // Force light mode - override DSFR JS dark mode detection
+  (function forceLight() {
+    var root = document.documentElement;
+    root.setAttribute('data-fr-scheme', 'light');
+    root.setAttribute('data-fr-theme', 'light');
+    // Override localStorage so DSFR doesn't read a saved dark preference
+    try { localStorage.setItem('scheme', 'light'); } catch(e) {}
+    // Re-apply after DSFR JS init (runs async)
+    setTimeout(function() {
+      root.setAttribute('data-fr-scheme', 'light');
+      root.setAttribute('data-fr-theme', 'light');
+    }, 500);
+    setTimeout(function() {
+      root.setAttribute('data-fr-scheme', 'light');
+      root.setAttribute('data-fr-theme', 'light');
+    }, 1500);
+  })();
+</script>
+</body>
+</html>

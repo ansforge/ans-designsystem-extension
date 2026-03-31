@@ -29,6 +29,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "correspondance-ds-ans-dsfr.html",
+                "input": "..",
+                "output": "/"
               }
             ],
             "styles": [
