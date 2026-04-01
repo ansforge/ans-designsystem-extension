@@ -7,8 +7,15 @@
     "./pivot": "./build/css/ans-dsfr-pivot.css",
     "./components": "./build/css/ans-dsfr-components.css"
   },
+  "description": "Surcharge CSS du DSFR aux couleurs de l'ANS (Agence du Numérique en Santé)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansforge/ans-designsystem-extension.git"
+  },
+  "homepage": "https://github.com/ansforge/ans-designsystem-extension#readme",
   "files": [
-    "build/css"
+    "build/css",
+    "README.md"
   ],
   "scripts": {
     "build": "node build.js",
