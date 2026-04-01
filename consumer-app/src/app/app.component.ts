@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShowcaseComponent } from './components/showcase/showcase.component';
 import { ButtonTestComponent } from './components/button-test/button-test.component';
 import { BadgeTestComponent } from './components/badge-test/badge-test.component';
 import { RadioTestComponent } from './components/radio-test/radio-test.component';
@@ -20,7 +19,6 @@ import { HeaderFooterTestComponent } from './components/header-footer-test/heade
   standalone: true,
   imports: [
     CommonModule, 
-    ShowcaseComponent, 
     ButtonTestComponent, 
     BadgeTestComponent, 
     RadioTestComponent,
@@ -39,7 +37,7 @@ import { HeaderFooterTestComponent } from './components/header-footer-test/heade
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  activeTab: 'showcase' | 'buttons' | 'badges' | 'radios' | 'checkbox' | 'input' | 'select' | 'button-group' | 'link' | 'stepper' | 'alerts' | 'tiles' | 'modal' | 'header-footer' = 'header-footer';
+  activeTab: 'buttons' | 'badges' | 'radios' | 'checkbox' | 'input' | 'select' | 'button-group' | 'link' | 'stepper' | 'alerts' | 'tiles' | 'modal' | 'header-footer' = 'header-footer';
   
   title = 'Test Consumer App';
 

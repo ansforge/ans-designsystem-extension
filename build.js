@@ -108,7 +108,6 @@ async function build(name, sources, dest, options = {}) {
 
 console.log('Build v9 (Fix size/color persistence)...');
 await build('Primitives', ['tmp-primitives.json'], 'ans-primitives.css');
-await build('Tokens', ['tmp-primitives.json', 'tmp-semantics.json'], 'ans-tokens.css', { outputReferences: true });
 await build('Pivot', ['tmp-primitives.json', 'tmp-semantics.json'], 'ans-dsfr-pivot.css', { outputReferences: true });
 
 // Copie du fichier des surcharges spécifiques de composants (Radius, Ombres)
