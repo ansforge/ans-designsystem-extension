@@ -28,9 +28,6 @@
   <div class="fr-tabs">
     <ul class="fr-tabs__list" role="tablist" aria-label="Sections de test">
       <li role="presentation">
-        <button [attr.aria-selected]="activeTab === 'showcase'" class="fr-tabs__tab" (click)="activeTab = 'showcase'">Showcase Général</button>
-      </li>
-      <li role="presentation">
         <button [attr.aria-selected]="activeTab === 'buttons'" class="fr-tabs__tab" (click)="activeTab = 'buttons'">Test Boutons</button>
       </li>
       <li role="presentation">
@@ -71,27 +68,22 @@
       </li>
     </ul>
 
-    <!-- ONGLET 1 : SHOWCASE GÉNÉRAL -->
-    <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'showcase'" *ngIf="activeTab === 'showcase'">
-      <app-showcase (modalTrigger)="openModal($event)"></app-showcase>
-    </div>
-
-    <!-- ONGLET 2 : TEST BOUTONS -->
+    <!-- ONGLET 1 : TEST BOUTONS -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'buttons'" *ngIf="activeTab === 'buttons'">
       <app-button-test></app-button-test>
     </div>
 
-    <!-- ONGLET 3 : TEST BADGES -->
+    <!-- ONGLET 2 : TEST BADGES -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'badges'" *ngIf="activeTab === 'badges'">
       <app-badge-test></app-badge-test>
     </div>
 
-    <!-- ONGLET 4 : TEST RADIOS -->
+    <!-- ONGLET 3 : TEST RADIOS -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'radios'" *ngIf="activeTab === 'radios'">
       <app-radio-test></app-radio-test>
     </div>
 
-    <!-- ONGLET 4b : TEST ALERTES -->
+    <!-- ONGLET 4 : TEST ALERTES -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'alerts'" *ngIf="activeTab === 'alerts'">
       <app-alert-test></app-alert-test>
     </div>
@@ -127,17 +119,17 @@
     </div>
 
 
-    <!-- ONGLET 12 : TEST MODAL -->
+    <!-- ONGLET 11 : TEST MODAL -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'modal'" *ngIf="activeTab === 'modal'">
       <app-modal-test></app-modal-test>
     </div>
 
-    <!-- ONGLET 13 : TEST TUILES -->
+    <!-- ONGLET 12 : TEST TUILES -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'tiles'" *ngIf="activeTab === 'tiles'">
       <app-tile-test></app-tile-test>
     </div>
 
-    <!-- ONGLET 14 : TEST HEADER/FOOTER -->
+    <!-- ONGLET 13 : TEST HEADER/FOOTER -->
     <div class="fr-tabs__panel" [class.fr-tabs__panel--selected]="activeTab === 'header-footer'" *ngIf="activeTab === 'header-footer'">
       <app-header-footer-test></app-header-footer-test>
     </div>

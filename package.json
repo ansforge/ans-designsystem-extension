@@ -1,10 +1,9 @@
 {
-  "name": "ans-design-overrides",
-  "version": "1.0.1",
+  "name": "ans-designsystem-extension",
+  "version": "1.0.0",
   "main": "build/css/ans-dsfr-pivot.css",
   "exports": {
     "./primitives": "./build/css/ans-primitives.css",
-    "./tokens": "./build/css/ans-tokens.css",
     "./pivot": "./build/css/ans-dsfr-pivot.css",
     "./components": "./build/css/ans-dsfr-components.css"
   },
