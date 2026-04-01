@@ -1,4 +1,4 @@
-# ans-design-overrides
+# ans-designsystem-extension
 
 Cette bibliothèque centralise les **Tokens de Design de l'ANS** (Agence du Numérique en Santé) et fournit un système de surcharge (pivot) pour le **DSFR** (Système de Design de l'État Français).
 
