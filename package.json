@@ -1,6 +1,6 @@
 {
   "name": "ans-designsystem-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "build/css/ans-dsfr-pivot.css",
   "exports": {
     "./primitives": "./build/css/ans-primitives.css",
