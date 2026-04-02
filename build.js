@@ -77,6 +77,38 @@ function getAllKeys(obj, prefix = '') {
   return keys;
 }
 
+// Sépare un objet de tokens prétraités en deux groupes :
+// - raw : tokens à valeur brute (pas d'alias) → iront dans les primitives
+// - ref : tokens aliasés avec {path} → resteront dans le pivot
+function separateRawAndRef(obj) {
+  const raw = {};
+  const ref = {};
+  for (const key in obj) {
+    if (obj[key].$value !== undefined) {
+      const isRef = typeof obj[key].$value === 'string' && obj[key].$value.startsWith('{');
+      (isRef ? ref : raw)[key] = obj[key];
+    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+      const { raw: childRaw, ref: childRef } = separateRawAndRef(obj[key]);
+      if (Object.keys(childRaw).length) raw[key] = childRaw;
+      if (Object.keys(childRef).length) ref[key] = childRef;
+    }
+  }
+  return { raw, ref };
+}
+
+// Fusionne 'source' dans 'target' (deep merge, sans mutation de source)
+function deepMerge(target, source) {
+  for (const key in source) {
+    if (source[key] && typeof source[key] === 'object' && source[key].$value === undefined) {
+      target[key] = target[key] || {};
+      deepMerge(target[key], source[key]);
+    } else {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+
 const rawPrimitives = JSON.parse(fs.readFileSync('ans-primitives.json', 'utf-8'));
 const rawSemantics = JSON.parse(fs.readFileSync('Semantics/ANS.tokens.json', 'utf-8'));
 const allKeys = new Set([...getAllKeys(rawPrimitives), ...getAllKeys(rawSemantics)]);
@@ -84,12 +116,18 @@ const allKeys = new Set([...getAllKeys(rawPrimitives), ...getAllKeys(rawSemantic
 const primitives = preprocessTokens('ans-primitives.json', allKeys);
 const semantics = preprocessTokens('Semantics/ANS.tokens.json', allKeys);
 
-fs.writeFileSync('tmp-primitives.json', JSON.stringify(primitives, null, 2));
-fs.writeFileSync('tmp-semantics.json', JSON.stringify(semantics, null, 2));
+// Séparer les tokens sémantiques : bruts → primitives, aliasés → pivot
+const { raw: semanticsRaw, ref: semanticsRef } = separateRawAndRef(semantics);
+const mergedPrimitives = deepMerge(JSON.parse(JSON.stringify(primitives)), semanticsRaw);
 
-async function build(name, sources, dest, options = {}) {
+fs.writeFileSync('tmp-primitives.json', JSON.stringify(mergedPrimitives, null, 2));
+fs.writeFileSync('tmp-semantics.json', JSON.stringify(semanticsRef, null, 2));
+
+async function build(name, sources, dest, options = {}, filter = undefined) {
   const sd = new StyleDictionary({
     source: sources,
+    // Supprimer le warning "filtered out token references" (comportement intentionnel)
+    log: filter ? { warnings: 'disabled' } : {},
     platforms: {
       css: {
         transformGroup: 'css',
@@ -97,6 +135,7 @@ async function build(name, sources, dest, options = {}) {
         files: [{
           destination: dest,
           format: 'css/variables',
+          ...(filter && { filter }),
           options: options
         }]
       }
@@ -106,9 +145,17 @@ async function build(name, sources, dest, options = {}) {
   console.log(`✔ ${name} ok`);
 }
 
-console.log('Build v9 (Fix size/color persistence)...');
+console.log('Build...');
 await build('Primitives', ['tmp-primitives.json'], 'ans-primitives.css');
-await build('Pivot', ['tmp-primitives.json', 'tmp-semantics.json'], 'ans-dsfr-pivot.css', { outputReferences: true });
+// Pour le pivot : on charge les deux sources pour la résolution des alias,
+// mais on n'émet que les tokens qui viennent du fichier sémantique.
+await build(
+  'Pivot',
+  ['tmp-primitives.json', 'tmp-semantics.json'],
+  'ans-dsfr-pivot.css',
+  { outputReferences: true },
+  (token) => token.filePath === 'tmp-semantics.json'
+);
 
 // Copie du fichier des surcharges spécifiques de composants (Radius, Ombres)
 const srcComponents = path.join(process.cwd(), 'src/ans-dsfr-components.css');
@@ -117,6 +164,29 @@ if (fs.existsSync(srcComponents)) {
   fs.copyFileSync(srcComponents, destComponents);
   console.log(`✔ Composants DSFR : build/css/ans-dsfr-components.css`);
 }
+
+// Génération de l'orchestrateur Sass (Centralisation propre)
+const indexSCSS = [
+  '/* ANS Design System Extension — Centralisation des couches */',
+  '',
+  '@import "./ans-primitives.css";',
+  '@import "./ans-dsfr-pivot.css";',
+  '@import "./ans-dsfr-components.css";',
+  '',
+].join('\n');
+
+const indexCSS = [
+  '/* ANS Design System Extension — Orchestrateur CSS */',
+  '',
+  '@import "./ans-primitives.css";',
+  '@import "./ans-dsfr-pivot.css";',
+  '@import "./ans-dsfr-components.css";',
+  '',
+].join('\n');
+
+fs.writeFileSync(path.join(process.cwd(), 'build/css/index.scss'), indexSCSS, 'utf-8');
+fs.writeFileSync(path.join(process.cwd(), 'build/css/index.css'), indexCSS, 'utf-8');
+console.log('✔ index.scss et index.css générés (orchestrateurs)');
 
 fs.unlinkSync('tmp-primitives.json');
 fs.unlinkSync('tmp-semantics.json');

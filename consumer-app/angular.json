@@ -40,8 +40,6 @@
               "node_modules/@gouvfr/dsfr/dist/dsfr.min.css",
               "node_modules/@gouvfr/dsfr/dist/utility/icons/icons.min.css",
               "node_modules/@gouvfr/dsfr/dist/utility/utility.min.css",
-              "node_modules/ans-designsystem-extension/build/css/ans-dsfr-pivot.css",
-              "node_modules/ans-designsystem-extension/build/css/ans-dsfr-components.css",
               "src/styles.scss"
             ],
             "scripts": [

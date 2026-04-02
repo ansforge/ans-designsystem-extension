@@ -1,8 +1,14 @@
 {
   "name": "ans-designsystem-extension",
   "version": "1.0.1",
-  "main": "build/css/ans-dsfr-pivot.css",
+  "main": "build/css/index.css",
+  "sass": "build/css/index.scss",
   "exports": {
+    ".": {
+      "sass": "./build/css/index.scss",
+      "import": "./build/css/index.css",
+      "default": "./build/css/index.css"
+    },
     "./primitives": "./build/css/ans-primitives.css",
     "./pivot": "./build/css/ans-dsfr-pivot.css",
     "./components": "./build/css/ans-dsfr-components.css"
@@ -14,7 +20,7 @@
   },
   "homepage": "https://github.com/ansforge/ans-designsystem-extension#readme",
   "files": [
-    "build/css",
+    "build/css/",
     "README.md"
   ],
   "scripts": {
