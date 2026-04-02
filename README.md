@@ -31,24 +31,27 @@ npm install ans-designsystem-extension
 
 ### Option A : via `angular.json` (recommandé)
 
-Ajoutez les CSS dans la section `styles`, **dans cet ordre** :
+Ajoutez les CSS dans la section `styles` du fichier `angular.json`, **dans cet ordre** :
 
 ```json
 "styles": [
   "node_modules/@gouvfr/dsfr/dist/dsfr.min.css",
   "node_modules/@gouvfr/dsfr/dist/utility/icons/icons.min.css",
   "node_modules/@gouvfr/dsfr/dist/utility/utility.min.css",
+  "node_modules/ans-designsystem-extension/build/css/ans-primitives.css",
   "node_modules/ans-designsystem-extension/build/css/ans-dsfr-pivot.css",
-  "node_modules/ans-designsystem-extension/build/css/ans-dsfr-components.css",
-  "src/styles.scss"
+  "node_modules/ans-designsystem-extension/build/css/ans-dsfr-components.css"
 ]
 ```
 
 L'ordre est important : les fichiers ANS doivent être chargés **après** le DSFR pour que les surcharges s'appliquent.
 
-### Option B : via SCSS
+### Option B : via SCSS (recommandé pour Angular)
+
+Importez les trois couches dans votre fichier `styles.scss`. L'utilisation des sous-exports nommés est la méthode la plus robuste pour garantir la résolution des variables :
 
 ```scss
+@use 'ans-designsystem-extension/primitives';
 @use 'ans-designsystem-extension/pivot';
 @use 'ans-designsystem-extension/components';
 ```
@@ -59,16 +62,15 @@ La bibliothèque ne contient que du CSS pur (variables custom properties). Elle 
 
 ---
 
-## Que contient le package ?
+Le build produit **3 couches de tokens** et **2 orchestrateurs** dans `build/css/` :
 
-Le build produit **3 fichiers CSS** dans `build/css/` :
-
-```
-build/css/
-  ans-primitives.css         66 variables   Valeurs brutes (couleurs hex, ombres, fonts)
-  ans-dsfr-pivot.css        200 variables   Mapping ANS -> noms DSFR
-  ans-dsfr-components.css    ~190 lignes    Surcharges de composants (radius, box-shadow)
-```
+| Fichier | Rôle | Contenu |
+| --- | --- | --- |
+| `ans-primitives.css` | **Source brute** | 100% des valeurs (couleurs hex, radius px, fonts) |
+| `ans-dsfr-pivot.css` | **Mapping sémantique** | 100% de références `var()` vers les primitives |
+| `ans-dsfr-components.css` | **Surcharges manuelles** | Styles complexes non portables via variables |
+| `index.scss` | **Orchestrateur Sass** | Centralise les 3 couches via des imports Sass |
+| `index.css` | **Orchestrateur CSS** | Centralise les 3 couches via des `@import` CSS |
 
 ### 1. Primitives (`ans-primitives.css`)
 
@@ -196,7 +198,7 @@ ans-designsystem-extension/
   build.js                       Script de build (Style Dictionary v5)
   check-references.js            Validation : alias Figma -> primitives
   check-shadow-keys.js           Validation : structure des tokens shadow
-  build/css/                     Sortie du build (3 fichiers CSS)
+  build/css/                     Sortie du build (5 fichiers CSS : primitives, pivot, composants + orchestrateurs CSS/SCSS)
   consumer-app/                  App Angular de demo/test
   correspondance-ds-ans-dsfr.html  Table de correspondance visuelle
 ```
