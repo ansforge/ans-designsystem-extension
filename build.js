@@ -184,7 +184,6 @@ const indexCSS = [
   '',
 ].join('\n');
 
-fs.writeFileSync(path.join(process.cwd(), 'build/css/index.scss'), indexSCSS, 'utf-8');
 fs.writeFileSync(path.join(process.cwd(), 'build/css/index.css'), indexCSS, 'utf-8');
 console.log('✔ index.scss et index.css générés (orchestrateurs)');
 

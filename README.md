@@ -38,9 +38,7 @@ Ajoutez les CSS dans la section `styles` du fichier `angular.json`, **dans cet o
   "node_modules/@gouvfr/dsfr/dist/dsfr.min.css",
   "node_modules/@gouvfr/dsfr/dist/utility/icons/icons.min.css",
   "node_modules/@gouvfr/dsfr/dist/utility/utility.min.css",
-  "node_modules/ans-designsystem-extension/build/css/ans-primitives.css",
-  "node_modules/ans-designsystem-extension/build/css/ans-dsfr-pivot.css",
-  "node_modules/ans-designsystem-extension/build/css/ans-dsfr-components.css"
+  "node_modules/ans-designsystem-extension/build/css/index.css"
 ]
 ```
 
@@ -62,14 +60,13 @@ La bibliothèque ne contient que du CSS pur (variables custom properties). Elle 
 
 ---
 
-Le build produit **3 couches de tokens** et **2 orchestrateurs** dans `build/css/` :
+Le build produit **3 fichiers CSS** et **1 orchestrateur CSS** dans `build/css/` :
 
 | Fichier | Rôle | Contenu |
 | --- | --- | --- |
 | `ans-primitives.css` | **Source brute** | 100% des valeurs (couleurs hex, radius px, fonts) |
 | `ans-dsfr-pivot.css` | **Mapping sémantique** | 100% de références `var()` vers les primitives |
 | `ans-dsfr-components.css` | **Surcharges manuelles** | Styles complexes non portables via variables |
-| `index.scss` | **Orchestrateur Sass** | Centralise les 3 couches via des imports Sass |
 | `index.css` | **Orchestrateur CSS** | Centralise les 3 couches via des `@import` CSS |
 
 ### 1. Primitives (`ans-primitives.css`)
@@ -198,7 +195,7 @@ ans-designsystem-extension/
   build.js                       Script de build (Style Dictionary v5)
   check-references.js            Validation : alias Figma -> primitives
   check-shadow-keys.js           Validation : structure des tokens shadow
-  build/css/                     Sortie du build (5 fichiers CSS : primitives, pivot, composants + orchestrateurs CSS/SCSS)
+  build/css/                     Sortie du build (4 fichiers CSS : primitives, pivot, composants + orchestrateur CSS)
   consumer-app/                  App Angular de demo/test
   correspondance-ds-ans-dsfr.html  Table de correspondance visuelle
 ```
