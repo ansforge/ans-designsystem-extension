@@ -1,6 +1,6 @@
 {
   "name": "ans-designsystem-extension",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/css/index.css",
   "sass": "build/css/index.scss",
   "exports": {
